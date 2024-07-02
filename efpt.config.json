@@ -1,0 +1,481 @@
+﻿{
+   "CodeGenerationMode": 3,
+   "ContextClassName": "PreProcContext",
+   "ContextNamespace": null,
+   "DefaultDacpacSchema": null,
+   "FilterSchemas": false,
+   "IncludeConnectionString": false,
+   "ModelNamespace": null,
+   "OutputContextPath": null,
+   "OutputPath": "Models",
+   "PreserveCasingWithRegex": true,
+   "ProjectRootNamespace": "PreProc",
+   "Schemas": null,
+   "SelectedHandlebarsLanguage": 2,
+   "SelectedToBeGenerated": 0,
+   "T4TemplatePath": null,
+   "Tables": [
+      {
+         "Name": "[dbo].[DataBillReqNew]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[Master_ListPreProcReminder]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[MLP_PO_ALL_ORACLE]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[MLPT_STOCKREQ_PO_ALL]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[MLPT_STOCKREQ_PO_DO_V]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[msCommentType]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[msCompetition]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[msCompetitor]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[msContingencyCost]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[msCurrency]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[msDocType]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[msEscalationToAM]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[msMaintenanceScope]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[msParameterValue]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[msPID]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[msPreProcStage]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[msPresalesID]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[msPrincipalPreload]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[msProcurementType]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[msProjectSource]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[msProjectType]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[msRiskType]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[msSourceBudget]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[msVendor]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[PreProc_HistoryReminder]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[PreProc_POData]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[PreProcApprovalHistory]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[PreProcAuditTrail]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[PreProcAuditTrailDetailItem]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[PreProcAuditTrailProjectRevenue]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[PreProcClarification]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[PreProcClarificationAttachment]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[PreProcDetail]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[PreProcFileAttachment]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[PreProcGeneralInfo2]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[PreProcHeaderAttachment]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[PreProcPendingBillingReason]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[PreProcPMOChecklist]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[PreProcPrincipalProjectRevenue]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[PreProcReminder]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[PreProcRisk]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[PreProcRiskAssesmentData]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[PreProcRiskData]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[PreProcSession]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[StockReq_ItemNew_Reminder_History]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[StockReq_Reminder_History]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[StockRequisitionMonitoring]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[TempPreProcDetail]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[vw_Vendor]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[COGS_NPC]",
+         "ObjectType": 3
+      },
+      {
+         "Name": "[dbo].[COGSRev_NPC]",
+         "ObjectType": 3
+      },
+      {
+         "Name": "[dbo].[msCustomerVw]",
+         "ObjectType": 3
+      },
+      {
+         "Name": "[dbo].[msNKProduct]",
+         "ObjectType": 3
+      },
+      {
+         "Name": "[dbo].[Rev_NPC]",
+         "ObjectType": 3
+      },
+      {
+         "Name": "[dbo].[vw_CSHd_EPM]",
+         "ObjectType": 3
+      },
+      {
+         "Name": "[dbo].[vw_DataInvoice]",
+         "ObjectType": 3
+      },
+      {
+         "Name": "[dbo].[vw_EmployeeBase]",
+         "ObjectType": 3
+      },
+      {
+         "Name": "[dbo].[vw_EmployeeBaseEReq]",
+         "ObjectType": 3
+      },
+      {
+         "Name": "[dbo].[vw_EmployeeBasePRM]",
+         "ObjectType": 3
+      },
+      {
+         "Name": "[dbo].[vw_ExportItem]",
+         "ObjectType": 3
+      },
+      {
+         "Name": "[dbo].[vw_Get_MPL_PO_ALL]",
+         "ObjectType": 3
+      },
+      {
+         "Name": "[dbo].[vw_getAdminMembers]",
+         "ObjectType": 3
+      },
+      {
+         "Name": "[dbo].[vw_getAllOptyID]",
+         "ObjectType": 3
+      },
+      {
+         "Name": "[dbo].[vw_getAllPID]",
+         "ObjectType": 3
+      },
+      {
+         "Name": "[dbo].[vw_getAMMember]",
+         "ObjectType": 3
+      },
+      {
+         "Name": "[dbo].[vw_getBODFull]",
+         "ObjectType": 3
+      },
+      {
+         "Name": "[dbo].[vw_getNKPName]",
+         "ObjectType": 3
+      },
+      {
+         "Name": "[dbo].[vw_getPCMemberFull]",
+         "ObjectType": 3
+      },
+      {
+         "Name": "[dbo].[vw_getPMMemberFull]",
+         "ObjectType": 3
+      },
+      {
+         "Name": "[dbo].[vw_getPMOMemberFull]",
+         "ObjectType": 3
+      },
+      {
+         "Name": "[dbo].[vw_getPossibleProductManagers]",
+         "ObjectType": 3
+      },
+      {
+         "Name": "[dbo].[vw_getPresalesMemberFull]",
+         "ObjectType": 3
+      },
+      {
+         "Name": "[dbo].[vw_getProcurementMemberFull]",
+         "ObjectType": 3
+      },
+      {
+         "Name": "[dbo].[vw_getProjectSupportMemberFull]",
+         "ObjectType": 3
+      },
+      {
+         "Name": "[dbo].[vw_getTenderAdminMemberFull]",
+         "ObjectType": 3
+      },
+      {
+         "Name": "[dbo].[vw_getVendor]",
+         "ObjectType": 3
+      },
+      {
+         "Name": "[dbo].[vw_getWarehouseMember]",
+         "ObjectType": 3
+      },
+      {
+         "Name": "[dbo].[vw_gp_tr_Stock_Req_Form]",
+         "ObjectType": 3
+      },
+      {
+         "Name": "[dbo].[vw_IssuePendingBillingReason]",
+         "ObjectType": 3
+      },
+      {
+         "Name": "[dbo].[vw_KodeAccount]",
+         "ObjectType": 3
+      },
+      {
+         "Name": "[dbo].[vw_ManagerPS]",
+         "ObjectType": 3
+      },
+      {
+         "Name": "[dbo].[vw_MappingSAGroup]",
+         "ObjectType": 3
+      },
+      {
+         "Name": "[dbo].[vw_ReasonPICName]",
+         "ObjectType": 3
+      },
+      {
+         "Name": "[dbo].[vw_ReasonPICName_Clear]",
+         "ObjectType": 3
+      },
+      {
+         "Name": "[dbo].[vw_Reminder_New_StockReq]",
+         "ObjectType": 3
+      },
+      {
+         "Name": "[dbo].[vw_ReminderPendingBillingReason_Header]",
+         "ObjectType": 3
+      },
+      {
+         "Name": "[dbo].[vw_ReportTrackingDeliverySheet]",
+         "ObjectType": 3
+      },
+      {
+         "Name": "[dbo].[vw_StockReq_Reminder]",
+         "ObjectType": 3
+      },
+      {
+         "Name": "[dbo].[vw_StockReq_ReminderGR]",
+         "ObjectType": 3
+      },
+      {
+         "Name": "[dbo].[vw_StockReq_ReminderGRHeader]",
+         "ObjectType": 3
+      },
+      {
+         "Name": "[dbo].[getPOByPIDFromOracle]",
+         "ObjectType": 1
+      },
+      {
+         "Name": "[dbo].[sp_GetCustomer]",
+         "ObjectType": 1
+      },
+      {
+         "Name": "[dbo].[sp_GetEmpDomainNameByNIP]",
+         "ObjectType": 1
+      },
+      {
+         "Name": "[dbo].[sp_getEmployeeEmailByCurrentUnit]",
+         "ObjectType": 1
+      },
+      {
+         "Name": "[dbo].[sp_GetEmployeeswithParam]",
+         "ObjectType": 1
+      },
+      {
+         "Name": "[dbo].[sp_GetProjectNameByPID]",
+         "ObjectType": 1
+      },
+      {
+         "Name": "[dbo].[sp_getProjectSupportByAMDomain]",
+         "ObjectType": 1
+      },
+      {
+         "Name": "[dbo].[sp_ReminderPendingBillingReason_Detail]",
+         "ObjectType": 1
+      },
+      {
+         "Name": "[dbo].[sp_StockReq_GetDetailIDByStockReqID]",
+         "ObjectType": 1
+      },
+      {
+         "Name": "[dbo].[sp_StockReq_GetDO_Data]",
+         "ObjectType": 1
+      },
+      {
+         "Name": "[dbo].[sp_StockReq_GetIDNew]",
+         "ObjectType": 1
+      },
+      {
+         "Name": "[dbo].[sp_StockReq_GetPO_Data]",
+         "ObjectType": 1
+      },
+      {
+         "Name": "[dbo].[sp_StockReq_GetPOPerStockReq]",
+         "ObjectType": 1
+      },
+      {
+         "Name": "[dbo].[sp_StockReq_GetReminderDetail]",
+         "ObjectType": 1
+      },
+      {
+         "Name": "[dbo].[sp_StockReq_IsValidToInsertDODetail]",
+         "ObjectType": 1
+      },
+      {
+         "Name": "[dbo].[sp_StockReq_IsValidToInsertPODetail]",
+         "ObjectType": 1
+      },
+      {
+         "Name": "[dbo].[sp_StockReq_IsValidToInsertPOHeader]",
+         "ObjectType": 1
+      },
+      {
+         "Name": "[dbo].[sp_StockReq_IsValidToInsertStockReq]",
+         "ObjectType": 1
+      },
+      {
+         "Name": "[dbo].[sp_StockReq_IsValidToInsertStockReqDetail]",
+         "ObjectType": 1
+      },
+      {
+         "Name": "[dbo].[sp_StockReq_PODetailsByStockReqID]",
+         "ObjectType": 1
+      }
+   ],
+   "UiHint": "mlpt-npc.PreProc.dbo",
+   "UncountableWords": null,
+   "UseBoolPropertiesWithoutDefaultSql": false,
+   "UseDatabaseNames": false,
+   "UseDateOnlyTimeOnly": false,
+   "UseDbContextSplitting": false,
+   "UseDecimalDataAnnotationForSprocResult": true,
+   "UseFluentApiOnly": true,
+   "UseHandleBars": false,
+   "UseHierarchyId": false,
+   "UseInflector": true,
+   "UseLegacyPluralizer": false,
+   "UseManyToManyEntity": false,
+   "UseNoDefaultConstructor": false,
+   "UseNoNavigations": false,
+   "UseNoObjectFilter": false,
+   "UseNodaTime": false,
+   "UseNullableReferences": false,
+   "UseSchemaFolders": false,
+   "UseSchemaNamespaces": false,
+   "UseSpatial": false,
+   "UseT4": false
+}

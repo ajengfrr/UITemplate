@@ -1,0 +1,1917 @@
+﻿@using System.Globalization;
+@model PreProc.Models.PreProcGeneralInfo2
+
+<style>
+    .nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+        background: #dc3545;
+        border-bottom-color: #dc3545;
+        border-bottom-style: solid;
+        border-bottom-width: 8px;
+    }
+
+    .nav-pills .nav-link {
+        background: black;
+        color: white;
+    }
+
+    .table thead th {
+        text-align: center;
+    }
+    .readonly-select {
+        pointer-events: none;
+        background-color: #e9ecef;
+        cursor: not-allowed;
+    }
+
+    .modalBackdrop {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background-color: rgba(0,0,0,0.2);
+    }
+
+</style>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+@{
+    ViewData["Title"] = "New Item";
+    // Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{
+    string date = DateTime.Now.ToString("dd-MMM-yy");
+    var cultureInfo = new CultureInfo("en-US"); // Change to your desired culture
+
+}
+
+
+<div class="container">
+
+    <div class="card">
+        <div class="card-body">
+            @* <h5 class="card-title">New Item</h5> *@
+            <form asp-action="PostNewItem"  asp-controller="PreProcs" method="post" enctype="multipart/form-data" id="postNewItem" onsubmit="valid()">
+                <div class="row mt-lg-5">
+                    <div class="col-8">
+                        <input type="submit" value="Save" class="btn btn-outline-success" />
+                        <a class="btn btn-outline-danger" asp-area="" asp-controller="PreProcs" asp-action="Index">
+                            Cancel
+                        </a>
+                    </div>
+                    <div class="col-4 text-end">
+                        @*  <a class="btn btn-outline-primary" asp-area="" asp-controller="TrTaxes" asp-action="DownloadFile"
+                        asp-route-id="@Model.DocumentId">
+                        Download File
+                        </a> *@
+                        @* <a class="btn btn-outline-success" asp-area="" asp-controller="TrTaxes" asp-action="#">
+                        Edit
+                        </a> *@
+                        <p>
+                            <b class="text-red">*</b> : Mandatory
+                            <br />
+                            <b class="text-red">**</b> : Either one is mandatory
+                        </p>
+
+                    </div>
+                </div>
+                
+
+                <!-- Pills Tabs -->
+                <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="pills-general-tab" data-bs-toggle="pill" data-bs-target="#pills-general" type="button" role="tab" aria-controls="pills-general" aria-selected="false" tabindex="-1">General Info</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="pills-risk-tab" data-bs-toggle="pill" data-bs-target="#pills-risk" type="button" role="tab" aria-controls="pills-risk" aria-selected="false" tabindex="-1">Risk Factor</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="pills-attachment-tab" data-bs-toggle="pill" data-bs-target="#pills-attachment" type="button" role="tab" aria-controls="pills-attachment" aria-selected="false" tabindex="-1">Attachments</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="pills-approval-tab" data-bs-toggle="pill" data-bs-target="#pills-approval" type="button" role="tab" aria-controls="pills-approval" aria-selected="false" tabindex="-1">Approval/Clarification</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link " id="pills-report-tab" data-bs-toggle="pill" data-bs-target="#pills-report" type="button" role="tab" aria-controls="pills-report" aria-selected="true">Reports</button>
+                    </li>
+                </ul>
+                <div class="tab-content pt-2" id="myTabContent">
+                    <div class="tab-pane fade active show" id="pills-general" role="tabpanel" aria-labelledby="general-tab">
+                        <hr />
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        @* <input type="hidden" asp-for="DocumentId" value="@Model.DocumentId" />
+                        <input type="hidden" asp-for="Id" value="@Model.Id" /> *@
+                        <div class="form-group">
+                            <div class="row mt-lg-2">
+                                <div class="col-2">
+                                    <label class="col-form-label control-label">Stage</label>
+                                    <span class="text-danger"></span>
+                                </div>
+                                <div class="col-3">
+                                    <div class="row">
+                                        <label class="col-form-label control-label col-1">
+                                            :
+                                        </label>
+                                        <select asp-for="Stage" class="form-select form-control" aria-label="Default select example" style="width:250px" id="selectStage" runat="server" name="Stage">
+                                            @foreach (var item in @ViewBag.items)
+                                            {
+                                                <option value="@item.Stage">@item.Text</option>
+                                            }
+                                        </select>
+                                    </div>
+
+                                    @* <input  class="form-control" style="width:250px" type="text" value="" /> *@
+                                </div>
+                                <div class="col-2">
+                                    <label class="col-form-label control-label">Opp ID/Presales ID <b class="text-red">*</b></label>
+                                    <span class="text-danger"></span>
+                                </div>
+                                <div class="col-3 visiblePID" style="display:none">
+                                    <div class="row">
+                                        <label class="col-form-label control-label">
+                                            : PID
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-3 visiblePreID" style="display:block">
+                                    <div class="row">
+                                        <label class="col-form-label control-label col-1">
+                                            :
+                                        </label>
+                                        <select asp-for="PresalesId" class="form-select form-control" aria-label="Default select example" style="width:250px">
+                                            <option selected value="">(Please Select)</option>
+                                            @foreach (var item in @ViewBag.presales)
+                                            {
+                                                <option value="@item.NewPresalesid">@item.NewPresalesid</option>
+                                            }
+                                        </select>
+                                        @* <input class="form-control" style="width:250px" type="text" value="" /> *@
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row mt-lg-3">
+                                <div class="col-2">
+                                    <label class="col-form-label control-label">RFP ID	</label>
+                                    <span class="text-danger"></span>
+                                </div>
+                                <div class="col-3">
+                                    <div class="row">
+                                        <label class="col-form-label control-label col-1">
+                                            :
+                                        </label>
+                                        <input asp-for="RfpId" class="form-control inputAll" style="width:250px" type="text" value="" disabled />
+                                    </div>
+                                </div>
+                                <div class="col-2 visiblePID" style="display:none">
+                                    <label class="col-form-label control-label">PID <b class="text-red">*</b></label>
+                                    <span class="text-danger"></span>
+                                </div>
+                                <div class="col-3 visiblePID" style="display:none">
+                                    <div class="row">
+                                        <label class="col-form-label control-label col-1">
+                                            :
+                                        </label>
+                                        <select asp-for="Pid" class="form-select form-control" aria-label="Default select example" style="width:250px">
+                                            <option selected value="">(Please Select)</option>
+                                            @foreach (var item in @ViewBag.pids)
+                                            {
+                                                <option value="@item.ProjectId">@item.ProjectId</option>
+                                            }
+                                        </select>
+                                        @* <input class="form-control" style=proposal no"width:250px" type="text" value="" /> *@
+                                    </div>
+                                </div>
+                                <div class="col-2 visiblePID" style="display:none">
+                                    <a class="btn btn-outline-secondary" href="@ViewBag.urlgenpid.AlphaNumericValue">
+                                        Gen PID
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row mt-lg-2">
+                                <div class="col-2" id="divProposalNo">
+                                    <label class="col-form-label control-label">Proposal No.	</label>
+                                    <span class="text-danger"></span>
+                                </div>
+                                <div class="col-3">
+                                    <div class="row">
+                                        <label class="col-form-label control-label col-1">
+                                            :
+                                        </label>
+                                        <input asp-for="ProposalId" class="form-control inputAll" style="width:250px" type="text" value="" disabled />
+                                    </div>
+                                </div>
+                                <div class="col-2">
+                                    <label class="col-form-label control-label">Owner Estimate (IDR) <b class="text-red">**</b></label>
+                                    <span asp-validation-for="ProjectValueIdr" class="text-danger"></span>
+
+                                </div>
+                                <div class="col-3">
+                                    <div class="row">
+                                        <label class="col-form-label control-label col-1">
+                                            :
+                                        </label>
+                                        <input asp-for="ProjectValueIdr" class="form-control text-end" style="width:250px" type="text" value="" id="txtProjectValIdr"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row mt-lg-2">
+                                <div class="col-2" id="divQuotationNo">
+                                    <label class="col-form-label control-label">Quotation No.</label>
+                                    <span class="text-danger"></span>
+                                </div>
+                                <div class="col-3">
+                                    <div class="row">
+                                        <label class="col-form-label control-label col-1">
+                                            :
+                                        </label>
+                                        <input asp-for="QuotationId" class="form-control inputAll" style="width:250px" type="text" value="" disabled />
+                                    </div>
+                                </div>
+                                <div class="col-2">
+                                    <label class="col-form-label control-label">
+                                        Owner Estimate (USD)
+                                        <b class="text-red">**</b> (Ex: 10000.00)
+                                    </label>
+                                    <span class="text-danger"></span>
+                                </div>
+                                <div class="col-3">
+                                    <div class="row">
+                                        <label class="col-form-label control-label col-1">
+                                            :
+                                        </label>
+                                        <input asp-for="ProjectValueUsd" class="form-control text-end" style="width:250px" type="text" value="" id="txtProjectValUsd"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row mt-lg-2">
+                                <div class="col-2">
+                                    <label class="col-form-label control-label">Customer <b class="text-red">*</b></label>
+                                    <span class="text-danger"></span>
+                                </div>
+                                <div class="col-3">
+                                    <div class="row">
+                                        <label class="col-form-label control-label col-1">
+                                            :
+                                        </label>
+                                        <select asp-for="Customer" class="form-select form-control" aria-label="Default select example" style="width:250px">
+                                            <option selected value="">(Please Select)</option>
+                                            @foreach (var item in @ViewBag.customers)
+                                            {
+                                                <option value="@item.InitialCode">@item.AccountName (@item.InitialCode)</option>
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-2" id="divEstGP">
+                                    <label class="col-form-label control-label" id="labelEstGP">
+                                        Est. % GP <b class="text-red">*</b> (Ex: 8.20)
+                                    </label>
+                                    <span class="text-danger"></span>
+                                </div>
+                                <div class="col-3">
+                                    <div class="row">
+                                        <label class="col-form-label control-label col-1">
+                                            :
+                                        </label>
+                                        @* <input type="number" step="0.01" asp-for="EstGpgeneral" class="form-control text-end" style="width:250px" value=""/> *@
+                                        <input asp-for="EstGpgeneral" class="form-control text-end" style="width:250px" type="text" value="" id="txtGP"/> 
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row mt-lg-2">
+                                <div class="col-2">
+                                    <label class="col-form-label control-label">Account Manager <b class="text-red">*</b></label>
+                                    <span class="text-danger"></span>
+                                </div>
+                                <div class="col-3">
+                                    <div class="row">
+                                        <label class="col-form-label control-label col-1">
+                                            :
+                                        </label>
+                                        @if (ViewBag.useraccessAM != null)
+                                        {
+                                            <select asp-for="Am" class="form-select form-control" aria-label="Default select example" style="width:250px" disabled>
+                                                <option selected value="@ViewBag.useraccessAM.DomainName">@ViewBag.useraccessAM.EmployeeName</option>
+                                            </select>
+                                        }
+                                        else
+                                        {
+                                            <select asp-for="Am" class="form-select form-control" aria-label="Default select example" style="width:250px">
+                                                @foreach (var item in @ViewBag.amemployees)
+                                                {
+                                                    <option value="@item.DomainName">@item.EmployeeName</option>
+                                                }
+                                            </select>
+                                        }
+                                    </div>
+                                </div>
+                                <div class="col-2">
+                                    <label class="col-form-label control-label">
+                                        Project Type
+                                    </label>
+                                    <span class="text-danger"></span>
+                                </div>
+                                <div class="col-3">
+                                    <div class="row">
+                                        <label class="col-form-label control-label col-1">
+                                            :
+                                        </label>
+                                        <select asp-for="ProjectType" class="form-select form-control" aria-label="Default select example" style="width:250px">
+                                            @foreach (var item in @ViewBag.projecttypes)
+                                            {
+                                                <option value="@item.Type">@item.Type</option>
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row mt-lg-2">
+                                <div class="col-2">
+                                    <label class="col-form-label control-label">Technical Lead/Presales <b class="text-red">*</b></label>
+                                    <span class="text-danger"></span>
+                                </div>
+                                <div class="col-3">
+                                    <div class="row">
+                                        <label class="col-form-label control-label col-1">
+                                            :
+                                        </label>
+                                        <select asp-for="PropMgr" class="form-select form-control" aria-label="Default select example" style="width:250px">
+                                            <option selected value=""></option>
+                                            @foreach (var item in @ViewBag.technicalemployees)
+                                            {
+                                                <option value="@item.DomainName">@item.EmployeeName</option>
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-2">
+                                    <label class="col-form-label control-label">
+                                        Description
+                                    </label>
+                                    <span class="text-danger"></span>
+                                </div>
+                                <div class="col-3">
+                                    <div class="row">
+                                        <label class="col-form-label control-label col-1">
+                                            :
+                                        </label>
+                                        <textarea asp-for="Description" class="form-control" style="width:290px;height:100px"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row mt-lg-2">
+                                <div class="col-2" id="divTenderAdmin">
+                                    <label class="col-form-label control-label">Tender Admin</label>
+                                    <span class="text-danger"></span>
+                                </div>
+                                <div class="col-3">
+                                    <div class="row">
+                                        <label class="col-form-label control-label col-1">
+                                            :
+                                        </label>
+                                        @if (ViewBag.useraccessTA != null)
+                                        {
+                                            <select  class="form-select form-control" aria-label="Default select example" style="width:250px" disabled>
+                                                <option selected value="@ViewBag.useraccessTA.DomainName">@ViewBag.useraccessTA.EmployeeName</option>
+                                            </select>
+                                            <input type="hidden" value="@ViewBag.useraccessTA.DomainName" asp-for="TenderAdm">
+                                        }
+                                        else
+                                        {
+                                            <select asp-for="TenderAdm" class="form-select form-control inputAll" aria-label="Default select example" style="width:250px" disabled>
+                                                <option selected value=""></option>
+                                                @foreach (var item in @ViewBag.tenderemployees)
+                                                {
+                                                    <option value="@item.DomainName">@item.EmployeeName</option>
+                                                }
+                                            </select>
+                                        }
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row mt-lg-2">
+                                <div class="col-2" id="divProposalDate">
+                                    <label class="col-form-label control-label">Proposal Submission Date <b class="text-red">*</b></label>
+                                    <span class="text-danger"></span>
+                                </div>
+                                <div class="col-3">
+                                    <div class="row">
+                                        <label class="col-form-label control-label col-1">
+                                            :
+                                        </label>
+                                        <input asp-for="ProposalSubmissionDate" class="form-control" style="width:250px" type="date" value="" />
+                                    </div>
+                                </div>
+                                <div class="col-2" id="divPICProc">
+                                    <label class="col-form-label control-label" id="labelPICProc">
+                                        PIC Procurement
+                                    </label>
+                                    <span class="text-danger"></span>
+                                </div>
+                                
+                                <div class="col-3">
+                                    <div class="row">
+                                        <label class="col-form-label control-label col-1">
+                                            :
+                                        </label>
+                                        <textarea class="form-control" id="resultSelectedPICProc" style="width:250px;height:100px" disabled>
+                                        </textarea>
+                                    </div>
+                                </div>
+                                <div class="col-4" hidden id="divresultSelectedPICProcEmail">
+                                    <textarea asp-for="PicProc" class="form-control" id="resultSelectedPICProcEmail" >
+                                    </textarea>
+                                </div>
+                                <div class="col-2">
+                                    <a class="btn btn-outline-secondary modalDelete" data-bs-toggle="modal" data-bs-target="#picProcModal">
+                                        Select PIC
+                                    </a>
+                                    @* <input class="form-control" style="width:250px" type="text" value="" /> *@
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row mt-lg-2">
+                                <div class="col-2">
+                                    <label class="col-form-label control-label">Subcon Quotation Deadline	</label>
+                                    <span class="text-danger"></span>
+                                </div>
+                                <div class="col-3">
+                                    <div class="row">
+                                        <label class="col-form-label control-label col-1">
+                                            :
+                                        </label>
+                                        <input asp-for="QuotationDeadline" class="form-control inputAll" style="width:250px" type="date" value="" disabled />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row mt-lg-2">
+                                <div class="col-2">
+                                    <label class="col-form-label control-label">Hedging</label>
+                                    <span class="text-danger"></span>
+                                </div>
+                                <div class="col-3">
+                                    <div class="row">
+                                        <label class="col-form-label control-label">
+                                            :  <input name="Hedging" value="true" type="checkbox" class="form-check-input checkbox inputAll"
+                                                      style="border: 1px solid;" disabled>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-2" id="divBOD">
+                                    <label class="col-form-label control-label" id="labelBOD">
+                                        BOD
+                                    </label>
+                                    <span class="text-danger"></span>
+                                </div>
+                                <div class="col-3">
+                                    <div class="row">
+                                        <label class="col-form-label control-label col-1">
+                                            :
+                                        </label>
+                                        <textarea class="form-control" id="resultSelectedBOD" style="width:250px;height:100px" disabled>
+                                            @foreach (var item in @ViewBag.defaultbod)
+                                            {
+                                                @item.Nama <text>;</text>
+                                            }
+                                        </textarea>
+                                    </div>
+                                </div>
+                                <div class="col-4" hidden id="divResultSelectedBODEmail">
+                                    <textarea asp-for="EmailCommitteeDefault" class="form-control" id="resultSelectedBODEmail" >
+                                        @foreach (var item in @ViewBag.defaultbod)
+                                        {
+                                            @item.EmailAddress
+                                        }
+                                    </textarea>
+                                </div>
+                                <div class="col-2">
+                                    <a class="btn btn-outline-secondary modalDelete" data-bs-toggle="modal" data-bs-target="#bodModal" style="visibility: hidden;" id="btnselectbod">
+                                        Select BOD
+                                    </a>
+                                    @* <input class="form-control" style="width:250px" type="text" value="" /> *@
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row mt-lg-2">
+                                <div class="col-2">
+                                    <label class="col-form-label control-label">Status Presales	</label>
+                                    <span class="text-danger"></span>
+                                </div>
+                                <div class="col-3">
+                                    <div class="row">
+                                        <label class="col-form-label control-label">
+                                            : New
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-2">
+                                    <label class="col-form-label control-label">
+                                        PM
+                                    </label>
+                                    <span class="text-danger"></span>
+                                </div>
+                                <div class="col-3">
+                                    <div class="row">
+                                        <label class="col-form-label control-label col-1">
+                                            :
+                                        </label>
+                                        <select asp-for="Pm" class="form-select form-control" aria-label="Default select example" style="width:250px" disabled>
+                                            <option value="" selected>-pilih-</option>
+                                            @foreach (var item in @ViewBag.pm)
+                                            {
+                                                <option value="@item.DomainName">@item.EmployeeName</option>
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row mt-lg-2">
+                                <div class="col-2">
+                                    <label class="col-form-label control-label">Creation Date	</label>
+                                </div>
+                                <div class="col-3">
+                                    <div class="row">
+                                        <label class="col-form-label control-label">
+                                            : @date
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-2">
+                                    <label class="col-form-label control-label">
+                                        PC
+                                    </label>
+                                    <span class="text-danger"></span>
+                                </div>
+                                <div class="col-3">
+                                    <div class="row">
+                                        <label class="col-form-label control-label col-1">
+                                            :
+                                        </label>
+                                        <select asp-for="Pc" class="form-select form-control" aria-label="Default select example" style="width:250px" disabled>
+                                            <option value="" selected>-pilih-</option>
+                                            @foreach (var item in @ViewBag.pc)
+                                            {
+                                                <option value="@item.DomainName">@item.EmployeeName</option>
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group mb-lg-5">
+                            <div class="row mt-lg-2">
+                                <div class="col-2">
+                                    <label class="col-form-label control-label">Warranty Applied</label>
+                                    <span class="text-danger"></span>
+                                </div>
+                                <div class="col-3">
+                                    <div class="row">
+                                        <label class="col-form-label control-label">
+                                            : <input name="NeedWarranty" value="true" type="checkbox" class="form-check-input checkbox inputAll"
+                                                     style="border: 1px solid;" disabled>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-2">
+                                    <label class="col-form-label control-label">
+                                        Project Support
+                                    </label>
+                                    <span class="text-danger"></span>
+                                </div>
+                                <div class="col-3">
+                                    <div class="row">
+                                        <label class="col-form-label control-label col-1">
+                                            :
+                                        </label>
+                                        <select asp-for="ProjectSupport" class="form-select form-control" aria-label="Default select example" style="width:250px" disabled>
+                                            <option value="" selected>-pilih-</option>
+                                            @foreach (var item in @ViewBag.projectsupp)
+                                            {
+                                                <option value="@item.DomainName">@item.EmployeeName</option>
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="pills-risk" role="tabpanel" aria-labelledby="risk-tab">
+                        <hr />
+                        <b>External Factors</b>
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        @* <input type="hidden" asp-for="DocumentId" value="@Model.DocumentId" />
+                        <input type="hidden" asp-for="Id" value="@Model.Id" /> *@
+                        <div class="form-group">
+                            <div class="row mt-lg-2">
+                                <div class="col-5">
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="form-check-input checkbox"
+                                               style="border: 1px solid;" disabled>
+                                        <label class="custom-control-label" for="customCheck1">New Product / 1st Implementation</label>
+                                    </div>
+                                </div>
+                                <div class="col-5">
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="form-check-input checkbox"
+                                               style="border: 1px solid;" disabled>
+                                        <label class="custom-control-label" for="customCheck1">
+                                            Tight Timeline
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row mt-lg-2">
+                                <div class="col-5">
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="form-check-input checkbox"
+                                               style="border: 1px solid;" disabled>
+                                        <label class="custom-control-label" for="customCheck1">New Customer	</label>
+                                    </div>
+                                </div>
+                                <div class="col-5">
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="form-check-input checkbox"
+                                               style="border: 1px solid;" disabled>
+                                        <label class="custom-control-label" for="customCheck1">
+                                            Harsh Penalty
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row mt-lg-2">
+                                <div class="col-5">
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="form-check-input checkbox"
+                                               style="border: 1px solid;" disabled>
+                                        <label class="custom-control-label" for="customCheck1">New Subcon / Vendor	</label>
+                                    </div>
+                                </div>
+                                <div class="col-5">
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="form-check-input checkbox"
+                                               style="border: 1px solid;" disabled>
+                                        <label class="custom-control-label" for="customCheck1">
+                                            Non IT Scope of Work
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row mt-lg-2">
+                                <div class="col-5">
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="form-check-input checkbox"
+                                               style="border: 1px solid;" disabled>
+                                        <label class="custom-control-label" for="customCheck1">Multi Site / Roll Out	</label>
+                                    </div>
+                                </div>
+                                <div class="col-5">
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="form-check-input checkbox"
+                                               style="border: 1px solid;" disabled>
+                                        <label class="custom-control-label" for="customCheck1">
+                                            Customer Behavior (Highly Political/Baby Sitting)
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row mt-lg-2">
+                                <div class="col-5">
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="form-check-input checkbox"
+                                               style="border: 1px solid;" disabled>
+                                        <label class="custom-control-label" for="customCheck1">Stringent Requirement	</label>
+                                    </div>
+                                </div>
+                                <div class="col-5">
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="form-check-input checkbox"
+                                               style="border: 1px solid;" disabled>
+                                        <label class="custom-control-label" for="customCheck1">
+                                            Application Implementation Project
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row mt-lg-2">
+                                <div class="col-5">
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="form-check-input checkbox"
+                                               style="border: 1px solid;" disabled>
+                                        <label class="custom-control-label" for="customCheck1">Multi Subcon / Vendor	</label>
+                                    </div>
+                                </div>
+                                <div class="col-5">
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="form-check-input checkbox"
+                                               style="border: 1px solid;" disabled>
+                                        <label class="custom-control-label" for="customCheck1">
+                                            Unclear Scope
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row mt-lg-2">
+                                <div class="col-5">
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="form-check-input checkbox"
+                                               style="border: 1px solid;" disabled>
+                                        <label class="custom-control-label" for="customCheck1">Multi Platform	</label>
+                                    </div>
+                                </div>
+                                <div class="col-5">
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="form-check-input checkbox"
+                                               style="border: 1px solid;" disabled>
+                                        <label class="custom-control-label" for="customCheck1">
+                                            Payment 100% After Project Completion
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt-lg-4">
+                            <b>Internal Factors</b>
+                        </div>
+                        <div class="form-group">
+                            <div class="row mt-lg-2">
+                                <div class="col-5">
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="form-check-input checkbox"
+                                               style="border: 1px solid;" disabled>
+                                        <label class="custom-control-label" for="customCheck1">
+                                            Lack of Resource Capacity
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row mt-lg-2">
+                                <div class="col-5">
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="form-check-input checkbox"
+                                               style="border: 1px solid;" disabled>
+                                        <label class="custom-control-label" for="customCheck1">
+                                            Lack of Resource Capability
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row mt-lg-2">
+                                <div class="col-5">
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="form-check-input checkbox"
+                                               style="border: 1px solid;" disabled>
+                                        <label class="custom-control-label" for="customCheck1">
+                                            TOP does not Comply to MLPT Policy
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row mt-lg-2">
+                                <div class="col-5">
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="form-check-input checkbox"
+                                               style="border: 1px solid;" disabled>
+                                        <label class="custom-control-label" for="customCheck1">
+                                            GP Projection Less than Target
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt-lg-4">
+                            <b style="color:#970000">
+                                Overall Risk:
+                            </b>
+                        </div>
+                        <div class="row mt-lg-4">
+                            <b>
+                                Risk Description:
+                            </b>
+                        </div>
+                        <div class="row mt-lg-2">
+                            <div class="col-7">
+                                <textarea class="form-control" style="width:650px;height:100px" disabled></textarea>
+                            </div>
+                        </div>
+                        <div class="row mt-lg-4">
+                            <b>
+                                Detail Assessment Information:
+                            </b>
+                        </div>
+                        <div class="form-group">
+                            <div class="row mt-lg-2">
+                                <div class="col-2">
+                                    <label class="col-form-label control-label col-11">
+                                        Source of Budget
+                                    </label>
+
+                                </div>
+                                <div class="col-4">
+                                    <div class="row">
+                                        <label class="col-form-label control-label col-1">
+                                            :
+                                        </label>
+                                        <input class="form-control" style="width:250px" type="text" value="" hidden />
+                                    </div>
+                                </div>
+                                <div class="col-2">
+                                    <label class="col-form-label control-label col-11">
+                                        Est. Project Start
+                                    </label>
+
+                                </div>
+                                <div class="col-4">
+                                    <div class="row">
+                                        <label class="col-form-label control-label col-1">
+                                            :
+                                        </label>
+                                        <input class="form-control" style="width:250px" type="text" value="" hidden />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row mt-lg-2">
+                                <div class="col-2">
+                                    <label class="col-form-label control-label col-11">
+                                        Competition
+                                    </label>
+
+                                </div>
+                                <div class="col-4">
+                                    <div class="row">
+                                        <label class="col-form-label control-label col-1">
+                                            :
+                                        </label>
+                                        <input class="form-control" style="width:250px" type="text" value="" hidden />
+                                    </div>
+                                </div>
+                                <div class="col-2">
+                                    <label class="col-form-label control-label col-11">
+                                        Est. Project End
+                                    </label>
+
+                                </div>
+                                <div class="col-4">
+                                    <div class="row">
+                                        <label class="col-form-label control-label col-1">
+                                            :
+                                        </label>
+                                        <input class="form-control" style="width:250px" type="text" value="" hidden />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row mt-lg-2">
+                                <div class="col-2">
+                                    <label class="col-form-label control-label col-11">
+                                        Contigency Cost
+                                    </label>
+
+                                </div>
+                                <div class="col-4">
+                                    <div class="row">
+                                        <label class="col-form-label control-label col-1">
+                                            :
+                                        </label>
+                                        <input class="form-control" style="width:250px" type="text" value="" hidden />
+                                    </div>
+                                </div>
+                                <div class="col-2">
+                                    <label class="col-form-label control-label col-11">
+                                        Procurement Type
+                                    </label>
+
+                                </div>
+                                <div class="col-4">
+                                    <div class="row">
+                                        <label class="col-form-label control-label col-1">
+                                            :
+                                        </label>
+                                        <input class="form-control" style="width:250px" type="text" value="" hidden />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row mt-lg-2">
+                                <div class="col-2">
+                                    <label class="col-form-label control-label col-11">
+                                        Competitor
+                                    </label>
+
+                                </div>
+                                <div class="col-4">
+                                    <div class="row">
+                                        <label class="col-form-label control-label col-1">
+                                            :
+                                        </label>
+                                        <input class="form-control" style="width:250px" type="text" value="" hidden />
+                                    </div>
+                                </div>
+                                <div class="col-2">
+                                    <label class="col-form-label control-label col-11">
+                                        Procurement Info
+                                    </label>
+
+                                </div>
+                                <div class="col-4">
+                                    <div class="row">
+                                        <label class="col-form-label control-label col-1">
+                                            :
+                                        </label>
+                                        <input class="form-control" style="width:250px" type="text" value="" hidden />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row mt-lg-2">
+                                <div class="col-2">
+                                    <label class="col-form-label control-label col-11">
+                                        Revenue Sharing
+                                    </label>
+
+                                </div>
+                                <div class="col-4">
+                                    <div class="row">
+                                        <label class="col-form-label control-label col-1">
+                                            :
+                                        </label>
+                                        <input class="form-control" style="width:250px" type="text" value="" hidden />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row mt-lg-2">
+                                <div class="col-2">
+                                    <label class="col-form-label control-label col-11">
+                                        MLPT (Ex: 100)
+                                    </label>
+
+                                </div>
+                                <div class="col-4">
+                                    <div class="row">
+                                        <label class="col-form-label control-label col-1">
+                                            :
+                                        </label>
+                                        <input class="form-control" style="width:250px" type="text" value="" hidden />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row mt-lg-2">
+                                <div class="col-2">
+                                    <label class="col-form-label control-label col-11">
+                                        # Subcon
+                                    </label>
+
+                                </div>
+                                <div class="col-4">
+                                    <div class="row">
+                                        <label class="col-form-label control-label col-1">
+                                            :
+                                        </label>
+                                        <input class="form-control" style="width:250px" type="text" value="" hidden />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row mt-lg-2">
+                                <div class="col-2">
+                                    <label class="col-form-label control-label col-11">
+                                        Procurement Condition
+                                    </label>
+
+                                </div>
+                                <div class="col-4">
+                                    <div class="row">
+                                        <label class="col-form-label control-label col-1">
+                                            :
+                                        </label>
+                                        <textarea class="form-control" style="width:380px;height:100px" disabled></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row mt-lg-2">
+                                <div class="col-2">
+                                    <label class="col-form-label control-label col-11">
+                                        Predefined Condition Requested by Principal/Broker
+                                    </label>
+
+                                </div>
+                                <div class="col-4">
+                                    <div class="row">
+                                        <label class="col-form-label control-label col-1">
+                                            :
+                                        </label>
+                                        <textarea class="form-control" style="width:380px;height:100px" disabled></textarea>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt-lg-4">
+                            <b>
+                                Risk Assessment Committee:
+                            </b>
+                        </div>
+                        <div class="form-group">
+                            <div class="row mt-lg-2">
+                                <div class="col-2">
+                                    <label class="col-form-label control-label col-11">
+                                        Assigned To
+                                    </label>
+
+                                </div>
+                                <div class="col-4">
+                                    <div class="row">
+                                        <label class="col-form-label control-label col-1">
+                                            :
+                                        </label>
+                                        <input class="form-control" style="width:250px" type="text" value="" disabled />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row mt-lg-2">
+                                <div class="col-2">
+                                    <label class="col-form-label control-label col-11">
+                                        Committee
+                                    </label>
+
+                                </div>
+                                <div class="col-4">
+                                    <div class="row">
+                                        <label class="col-form-label control-label col-1">
+                                            :
+                                        </label>
+                                        <input class="form-control" style="width:250px" type="text" value="" hidden />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="pills-attachment" role="tabpanel" aria-labelledby="attachment-tab">
+                        <hr />
+                       @*  <form asp-action="UploadAttachment" onsubmit="loading()" asp-controller="PreProcs" method="post" enctype="multipart/form-data"> *@
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        @* <input type="hidden" asp-for="DocumentId" value="@Model.DocumentId" />
+                        <input type="hidden" asp-for="Id" value="@Model.Id" /> *@
+                        <div class="form-group">
+                            <div class="row mt-lg-2">
+                                <div class="col-6" id="divAttachRFP">
+                                    <label class="col-form-label control-label">1. RFP / RKS</label>
+                                    <span class="text-danger"></span>
+                                </div>
+                                <div class="col-2">
+                                    <label class="col-form-label control-label">4. BoQ</label>
+                                    <span class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="row mt-lg-2">
+                                <div class="col-6" >
+                                    <div class="input-group" style="width:500px">
+                                        <input type="file" id="postedfilerfp" name="postedfilerfp" class="form-control" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
+                                        <button class="btn btn-outline-secondary" type="button" id="uploadrfp" onclick="uploadrfpfile()">Upload</button>
+                                    </div>
+                                    <div class='row mt-lg-2' id="divInputFileRFP"></div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="input-group" style="width:500px">
+                                        <input type="file" id="postedfileboq" name="postedfileboq" class="form-control" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
+                                        <button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04" onclick="uploadboqfile()">Upload</button>
+                                    </div>
+                                    <div class='row mt-lg-2' id="divInputFileBOQ"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row mt-lg-2">
+                                <div class="col-6 divAttachQuotCustomer">
+                                    <label class="col-form-label control-label">2. Quotation to Customer</label>
+                                    <span class="text-danger"></span>
+                                </div>
+                                <div class="col-2">
+                                    <label class="col-form-label control-label">5. GP Projection</label>
+                                    <span class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="row mt-lg-2">
+                                <div class="col-6">
+                                    <div class="input-group" style="width:500px">
+                                        <input type="file" id="postedfilequot" name="postedfilequot" class="form-control" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
+                                        <button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04" onclick="uploadquotfile()">Upload</button>
+                                    </div>
+                                    <div class='row mt-lg-2' id="divInputFileQuot"></div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="input-group" style="width:500px">
+                                        <input type="file" id="postedfilegp" name="postedfilegp" class="form-control" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
+                                        <button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04" onclick="uploadgpfile()">Upload</button>
+                                    </div>
+                                    <div class='row mt-lg-2' id="divInputFileGP"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row mt-lg-2">
+                                <div class="col-6 divAttachProposal">
+                                    <label class="col-form-label control-label">3. Proposal</label>
+                                    <span class="text-danger"></span>
+                                </div>
+                                <div class="col-2">
+                                    <label class="col-form-label control-label">6. Others</label>
+                                    <span class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="row mt-lg-2">
+                                <div class="col-6">
+                                    <div class="input-group" style="width:500px">
+                                        <input type="file" id="postedfileproposal" name="postedfileproposal" class="form-control" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
+                                        <button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04" onclick="uploadpropofile()">Upload</button>
+                                    </div>
+                                    <div class='row mt-lg-2' id="divInputFilePropo"></div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="input-group" style="width:500px">
+                                        <input type="file" id="postedfileothers" name="postedfileothers" class="form-control" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
+                                        <button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04" onclick="uploadothersfile()">Upload</button>
+                                    </div>
+                                    <div class='row mt-lg-2' id="divInputFileOthers"></div>
+                                </div>
+                            </div>
+                        </div>
+                        @* </form> *@
+                    </div>
+                    <div class="tab-pane fade " id="pills-approval" role="tabpanel" aria-labelledby="approval-tab">
+                        <hr />
+                        <div class="row mt-lg-4">
+                            <b>
+                                Approval/Review Records
+                            </b>
+                        </div>
+                        <div class="table-wrapper table-responsive-lg mt-lg-4">
+                            <table class="table" style="font-size:small">
+                                <thead style="background:darkGreen;color:white">
+                                    <tr>
+                                        <th scope="col">Name</th>
+                                        <th scope="col">Role</th>
+                                        <th scope="col">Submit Date</th>
+                                        <th scope="col">Status</th>
+                                        <th scope="col">Remark</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="row mt-lg-4">
+                            <b>
+                                Remark & Clarification
+                            </b>
+                        </div>
+                        <div class="row mt-lg-4">
+                            <span>User Responses :</span>
+                        </div>
+                        
+                    </div>
+                    <div class="tab-pane fade " id="pills-report" role="tabpanel" aria-labelledby="report-tab">
+                        <hr />
+                        <p>
+                            <b>Reminder</b>
+                            <div class="form-group">
+                                <div class="row mt-lg-2">
+                                    <div class="col-2">
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="form-check-input checkbox"
+                                                   style="border: 1px solid;">
+                                            <label class="custom-control-label" for="customCheck1">Is Penalty Applied</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-3">
+                                        <label class="custom-control-label">| Penalty Due Date (if any) :</label>
+                                    </div>
+                                    <div class="col-2">
+                                        <input class="form-control" style="width:250px" type="date" value="" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mt-lg-2">
+                                <div class="col-2">
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="form-check-input checkbox" style="border: 1px solid;" checked>
+                                        <label class="custom-control-label" for="customCheck1">
+                                            Active Status
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mt-lg-2">
+                                <div class="col-3">
+                                    <span>
+                                        Non Active Pending Billing
+                                    </span>
+                                </div>
+                            </div>
+
+
+                        </p>
+
+                    </div>
+                </div><!-- End Pills Tabs -->
+
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="picProcModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="container">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel"><b>Select People</b></h1>
+                    <a class="btn btn-danger" data-bs-dismiss="modal">
+                        <i class="bi bi-x-lg"></i>
+                    </a>
+                </div>
+                @* <form asp-action="SelectPIC"> *@
+                <div class="modal-body">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="table-wrapper table-responsive-lg mt-lg-4">
+                                <table class="table" style="font-size:small">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">
+
+                                            </th>
+                                            <th scope="col">NIP</th>
+                                            <th scope="col">Name</th>
+                                            <th scope="col">Current Group</th>
+                                            <th scope="col">Employee Email</th>
+                                            <th scope="col">Domain Name</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in @ViewBag.picprocs)
+                                        {
+                                            <tr>
+                                                <td scope="col" width="50px">
+                                                    <input type="checkbox" name="IsSelected" value="@item.EmployeeEmail;@item.EmployeeName" class="form-check-input checkbox checkPIC" id="singleCheck" style="border: 1px solid;">
+                                                </td>
+                                                <td scope="col">@item.EmployeeNip</td>
+                                                <td scope="col">@item.EmployeeName</td>
+                                                <td scope="col">@item.CurrentUnit</td>
+                                                <td scope="col">@item.EmployeeEmail</td>
+                                                <td scope="col">@item.DomainName</td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-outline-success" data-bs-dismiss="modal" onclick="valueOnCheckSubmitPICProc()">Save</button>
+                    <a class="btn btn-outline-danger" data-bs-dismiss="modal">
+                        Cancel
+                    </a>
+                </div>
+                @* </form> *@
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="bodModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="container">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel"><b>Select People</b></h1>
+                    <a class="btn btn-danger" data-bs-dismiss="modal">
+                        <i class="bi bi-x-lg"></i>
+                    </a>
+                </div>
+                <div class="modal-body">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="table-wrapper table-responsive-lg mt-lg-4">
+                                <table class="table" style="font-size:small">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">
+
+                                            </th>
+                                            <th scope="col">NIP</th>
+                                            <th scope="col">Name</th>
+                                            <th scope="col">Current Group</th>
+                                            <th scope="col">Employee Email</th>
+                                            <th scope="col">Domain Name</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in @ViewBag.bod)
+                                        {
+                                            <tr>
+                                                <td scope="col" width="50px">
+                                                    <input type="checkbox" name="IsSelected" value="@item.EmailAddress;@item.Nama" class="form-check-input checkbox checkBOD" id="singleCheckBOD" style="border: 1px solid;">
+                                                </td>
+                                                <td scope="col">@item.Nip</td>
+                                                <td scope="col">@item.Nama</td>
+                                                <td scope="col">@item.CurrentGroup</td>
+                                                <td scope="col">@item.EmailAddress</td>
+                                                <td scope="col">@item.Login</td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-outline-success" data-bs-dismiss="modal" onclick="valueOnCheckSubmitBOD()">Save</button>
+                    <a class="btn btn-outline-danger" data-bs-dismiss="modal">
+                        Cancel
+                    </a>
+                </div>
+                @* </form> *@
+            </div>
+        </div>
+    </div>
+</div>
+
+@* <div id="myLoadingElement" style="display: block;"> *@
+    @* <div class="d-flex justify-content-center">
+    <div class="spinner-border" role="status">
+    <span class="visually-hidden">Loading...</span>
+    </div>
+    </div> *@
+    <div class="modal fade" id="myLoadingElement" tabindex="-1" aria-hidden="true">
+        <div class="modalBackdrop hidden"></div>
+        <div class="modal-dialog modal-dialog-centered modal-sm">
+            <div class="modal-content">
+
+                <div class="modal-body">
+                    <div class="d-flex justify-content-center">
+                        <div class="spinner-border" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+@* </div> *@
+
+<script>
+    var selDiv = "";
+    var idStage = $('#selectStage').val();
+    document.addEventListener("DOMContentLoaded", init, false);
+    var modalBackdrop = document.getElementsByClassName("modalBackdrop")[0];
+
+    function init() {
+        document.querySelector('#selectStage').addEventListener('change', changeStage, false);
+        selDiv = document.querySelector("div #divEstGP");
+        selDiv2 = document.querySelector("div #divPICProc");
+        selDiv3 = document.querySelector("div #divProposalNo");
+        selDiv4 = document.querySelector("div #divQuotationNo");
+        selDiv5 = document.querySelector("div #divProposalDate");
+        selDiv6 = document.querySelector("div #divAttachRFP");
+        selDiv7 = document.querySelector("div .divAttachQuotCustomer");
+        selDiv8 = document.querySelector("div .divAttachProposal");
+        selDiv9 = document.querySelector("div #divTenderAdmin");
+
+        $('#btnselectbod').css("visibility", "visible");
+
+        var projectidr = document.getElementById("txtProjectValIdr");
+        var projectusd = document.getElementById("txtProjectValUsd");
+        var estgp = document.getElementById("txtGP");
+
+        changeStage();
+
+        // function formatToTwoDecimalPlaces(value) {
+        //     console.log(value.split(";"));
+        //     const number = parseFloat(value);
+        //     if (isNaN(number)) {
+        //         return "";
+        //     }
+        //     return number.toLocaleString("en-US")
+        // }
+
+
+        // projectidr.addEventListener("change", function () {
+        //     if (projectidr.value) {
+        //         // console.log(projectidr.value);
+        //         // var val = projectidr.value.toString().replace(",", "");
+        //         // console.log(val);
+        //         projectidr.value = formatToTwoDecimalPlaces(projectidr.value);
+        //     }
+        // });
+
+        // $("#txtProjectValUsd").on("blur", function (){
+        //     if ($(this).val()) {
+        //         $(this).val(formatToTwoDecimalPlaces($(this).val())); 
+        //     }
+        // })
+
+        // // projectusd.addEventListener("blur", function () {
+        // //     if (projectusd.value) {
+        // //         projectusd.value = formatToTwoDecimalPlaces(projectusd.value);
+        // //     }
+        // // });
+        // estgp.addEventListener("blur", function () {
+        //     if (estgp.value) {
+        //         estgp.value = formatToTwoDecimalPlaces(estgp.value);
+        //     }
+        // });
+    }
+
+    function changeStage() {
+        console.log($('#selectStage').val());
+
+        idStage = $('#selectStage').val();
+
+        $('#btnselectbod').css("visibility", "visible");
+
+        
+
+        $('.inputAll').attr("disabled", false); //RFPID, ProposalNo, QuotationNo, Tender, SubconQuotDeadline, Hedging, Warranty
+
+        selDiv.innerHTML = "<label class=\"col-form-label control-label\" >" + "Est. % GP" + "<b class=\"text-red\" > * </b> (Ex: 8.20)" + "</label>" + "<span class=\"text-danger\" > </span>";
+        selDiv2.innerHTML = "<label class=\"col-form-label control-label\" >" + "PIC Procurement" + "<b class=\"text-red\"> * </b>" + "</label>" + "<span class=\"text-danger\" > </span > ";
+        selDiv3.innerHTML = "<label class=\"col-form-label control-label\" >" + "Proposal No." + "</label>" + "<span class=\"text-danger\" > </span>";
+        selDiv4.innerHTML = "<label class=\"col-form-label control-label\" >" + "Quotation No." + "</label>" + "<span class=\"text-danger\" > </span>";
+        selDiv6.innerHTML = "<label class=\"col-form-label control-label\" >" + "1. RFP / RKS" + "<span class=\"text-danger\" > </span>";
+        selDiv7.innerHTML = "<label class=\"col-form-label control-label\" >" + "2. Quotation to Customer" + "<span class=\"text-danger\" > </span>";
+        selDiv8.innerHTML = "<label class=\"col-form-label control-label\" >" + "3. Proposal" + "<span class=\"text-danger\" > </span>";
+
+        if (idStage == 'RiskAssessment' || idStage == 'Risk Assessment') { //RISK ASSESSMENT
+            $('.inputAll').attr("disabled", true);
+            $('.visiblePID').css("display", "none");
+            $('.visiblePreID').css("display", "block");
+            selDiv2.innerHTML = "<label class=\"col-form-label control-label\" >" + "PIC Procurement" + "</label>" + "<span class=\"text-danger\" > </span>";
+            selDiv5.innerHTML = "<label class=\"col-form-label control-label\" >" + "Proposal Submission Date" + "<b class=\"text-red\" > * </b>" + "</label>" + "<span class=\"text-danger\" > </span>";
+            
+        }
+        else if (idStage == 'Presales') { //PRESALES
+            $('.visiblePID').css("display", "none");
+            $('.visiblePreID').css("display", "block");
+            selDiv5.innerHTML = "<label class=\"col-form-label control-label\" >" + "Proposal Submission Date" + "<b class=\"text-red\" > * </b>" + "</label>" + "<span class=\"text-danger\" > </span>";
+            selDiv6.innerHTML = "<label class=\"col-form-label control-label\" >" + "1. RFP / RKS" + "<b class=\"text-red\" > * </b>" + "</label>" + "<span class=\"text-danger\" > </span>";
+            selDiv3.innerHTML = "<label class=\"col-form-label control-label\" >" + "Proposal No." + "<b class=\"text-red\"> ** </b>" + "</label>" + "<span class=\"text-danger\" > </span>";
+            selDiv4.innerHTML = "<label class=\"col-form-label control-label\" >" + "Quotation No." + "<b class=\"text-red\"> ** </b>" + "</label>" + "<span class=\"text-danger\" > </span>";
+            selDiv9.innerHTML = "<label class='col-form-label control-label'>Tender Admin</label>" + "<b class=\"text-red\"> * </b>" + "</label>" + "<span class=\"text-danger\" > </span>";
+            $('#btnselectbod').css("visibility", "hidden");
+            
+
+        }
+        else { //DELIVERY
+            $('.visiblePID').css("display", "block");
+            $('.visiblePreID').css("display", "none");
+            selDiv.innerHTML = "<label class=\"col-form-label control-label\" >" + "Est. % GP (Ex: 8.20)" + "</label>" + "<span class=\"text-danger\" > </span>";
+            selDiv3.innerHTML = "<label class=\"col-form-label control-label\" >" + "Proposal No." + "<b class=\"text-red\"> ** </b>" + "</label>" + "<span class=\"text-danger\" > </span>";
+            selDiv4.innerHTML = "<label class=\"col-form-label control-label\" >" + "Quotation No." + "<b class=\"text-red\"> ** </b>" + "</label>" + "<span class=\"text-danger\" > </span>";
+            selDiv5.innerHTML = "<label class=\"col-form-label control-label\" >" + "Proposal Submission Date" + "</label>" + "<span class=\"text-danger\"> </span>";
+            selDiv7.innerHTML = "<label class=\"col-form-label control-label\" >" + "2. Quotation to Customer" + "<b class=\"text-red\"> ** </b>" + "<span class=\"text-danger\" > </span>";
+            selDiv8.innerHTML = "<label class=\"col-form-label control-label\" >" + "3. Proposal" + "<b class=\"text-red\"> ** </b>" + "<span class=\"text-danger\" > </span>";
+            $('#btnselectbod').css("visibility", "hidden");
+        }
+
+    }
+
+    $("#postNewItem").on("submit", function( event ) {
+        
+
+        var flag = 0;
+        var stage = $('#selectStage').val();
+        var filespk = document.querySelector("#postedfilespk");
+        var filerfp = document.querySelector("#postedfilerfp");
+        var filequot = document.querySelector("#postedfilequot");
+        var fileproposal = document.querySelector("#postedfileproposal");
+        var fileboq = document.querySelector("#postedfileboq");
+        var filenego = document.querySelector("#postedfilenego");
+        var fileother = document.querySelector("#postedfileother");
+        var bod = $('#resultSelectedBODEmail').val();
+        var quotdeadline = $("input#QuotationDeadline").val()
+        var submissiondate = $("input#ProposalSubmissionDate").val()
+        var am = $("select#Am").val()
+        var presalesid = $("select#PresalesId").val()
+        var ta = $("select#TenderAdm").val()
+        var gp = $("input#txtGP").val()
+
+        bod = bod.split(";");
+        
+
+        if(idStage == "Delivery"){
+            if ($("#ProposalId").val() == "" && $("#QuotationId").val() == "")
+            {
+                alert( "Proposal No atau Quotation No tidak boleh kosong" );
+                flag = 1;
+            }
+            else if ($("#Customer").val() == ""){
+                alert( "Customer harus dipilih" );
+                flag = 1;
+            }
+            else if ($("#PropMgr").val() == ""){
+                alert( "Technical Lead atau Presales harus dipilih" );
+                flag = 1;
+            }
+            else if ($("#Pid").val() == ""){
+                alert( "PID harus dipilih" );
+                flag = 1;
+            }
+            else if ($("#txtProjectValIdr").val() == "" && $("#txtProjectValUsd").val() == "") {
+                alert( "Project Value tidak boleh kosong" );
+                flag = 1;
+            }
+            else if ($("#resultSelectedPICProcEmail").val() == ""){
+                alert( "PIC Procurement tidak boleh kosong" );
+                flag = 1;
+            }
+            else if ($("#RfpId").val() != "" && filerfp.files.length == 0){
+                alert( "Attachment RFP tidak boleh kosong" );
+                flag = 1;
+            }
+            else if ($("#ProposalId").val() != "" && fileproposal.files.length == 0){
+                alert( "Attachment Proposal tidak boleh kosong" );
+                flag = 1;
+            }
+            else if ($("#QuotationId").val() != "" && filequot.files.length == 0){
+                alert( "Attachment Quotation tidak boleh kosong" );
+                flag = 1;
+            }
+        }
+        else if(idStage == "Presales"){
+            if ($("#ProposalId").val() == "" && $("#QuotationId").val() == "")
+            {
+                alert( "Proposal No atau Quotation No tidak boleh kosong" );
+                flag = 1;
+            }
+            else if ($("#Customer").val() == ""){
+                alert( "Customer harus dipilih" );
+                flag = 1;
+            }
+            else if ($("#PropMgr").val() == ""){
+                alert( "Technical Lead atau Presales harus dipilih" );
+                flag = 1;
+            }
+            else if ($("#txtProjectValIdr").val() == "" && $("#txtProjectValUsd").val() == "")
+            {
+                alert( "Project Value tidak boleh kosong" );
+                flag = 1;
+            }
+            else if ($("#resultSelectedPICProcEmail").val() == ""){
+                alert( "PIC Procurement tidak boleh kosong" );
+                flag = 1;
+            }
+            else if ($("#RfpId").val() != "" && filerfp.files.length == 0){
+                alert( "Attachment RFP tidak boleh kosong" );
+                flag = 1;
+            }
+            else if ($("#ProposalId").val() != "" && fileproposal.files.length == 0){
+                alert( "Attachment Proposal tidak boleh kosong" );
+                flag = 1;
+            }
+            else if ($("#QuotationId").val() != "" && filequot.files.length == 0){
+                alert( "Attachment Quotation tidak boleh kosong" );
+                flag = 1;
+            }
+            else if (quotdeadline < submissiondate){
+                alert("Proposal Submission Date must be less than Subcon Quotation Deadline")
+                flag = 1;
+            }
+            else if (am == ""){
+                alert("Account Manager tidak boleh kosong")
+                flag = 1;
+            }
+            else if (presalesid == ""){
+                alert("Opty / Presales ID tidak boleh kosong")
+                flag = 1;
+            }
+            else if (ta == ""){
+                alert("Tender Admin tidak boleh kosong")
+                flag = 1;
+            }
+            else if (gp == ""){
+                alert("Est GP tidak boleh kosong")
+                flag = 1;
+            }
+        }
+
+        if(flag == 1){
+            event.preventDefault();
+        }
+        else{
+            $("#myLoadingElement").show()
+            $("#myLoadingElement").addClass("show")
+            modalBackdrop.style.display = "block";
+        }
+        
+    });
+
+    function loading() {
+        $("#myLoadingElement").show();
+    }
+
+    function valueOnCheckSubmit() {
+        selPIC = jQuery(".checkPIC");
+        var tempPIC = "";
+        selPIC.each(function () {
+            if (jQuery(this).prop("checked") == true) {
+                tempPIC += jQuery(this).val() + "; ";
+            }
+        })
+        $("#resultSelectedPIC").val(tempPIC);
+    }
+
+    // $('input#ProjectValueIdr').keyup(function(event) {
+
+    //   // skip for arrow keys
+    //   if(event.which >= 37 && event.which <= 40) return;
+
+    //   // format number
+    //   $(this).val(function(index, value) {
+    //     return value
+    //     .replace(/\D/g, "")
+    //     .replace(/\B(?=(\d{3})+(?!\d))/g, ".")
+    //     ;
+    //   });
+    // });
+
+    function valueOnCheckSubmitBOD() {
+        selPIC = jQuery(".checkBOD");
+        var tempPIC = "";
+        var tempPICDomain = "";
+        selPIC.each(function () {
+            if (jQuery(this).prop("checked") == true) {
+                var tempsplit = jQuery(this).val().split(";"); 
+                tempPIC += tempsplit[1] + "; ";
+                tempPICDomain += tempsplit[0] + ";";
+                console.log(tempPIC);
+            }
+        })
+        $("#resultSelectedBOD").val(tempPIC);
+        $("#resultSelectedBODEmail").val(tempPICDomain);
+    }
+
+    function valueOnCheckSubmitPICProc() {
+        selPIC = jQuery(".checkPIC");
+        var tempPIC = "";
+        var tempPICDomain = "";
+        selPIC.each(function () {
+            if (jQuery(this).prop("checked") == true) {
+                var tempsplit = jQuery(this).val().split(";"); 
+                tempPIC += tempsplit[1] + "; ";
+                tempPICDomain += tempsplit[0] + ";";
+                console.log(tempPIC);
+            }
+        })
+        $("#resultSelectedPICProc").val(tempPIC);
+        $("#resultSelectedPICProcEmail").val(tempPICDomain);
+    }
+
+    // $('input#ProjectValueUsd').keyup(function(event) {
+
+    //   // skip for arrow keys
+    //   if(event.which >= 37 && event.which <= 40) return;
+
+    //   // format number
+    //   $(this).val(function(index, value) {
+    //     return value
+    //     .replace(/\D/g, "")
+    //     .replace(/\B(?=(\d{3})+(?!\d))/g, ".")
+    //     ;
+    //   });
+    // });
+
+    function uploadrfpfile() {
+        var myfile = document.querySelector("#postedfilerfp");
+
+        $("#divInputFileRFP").html("");
+        if (myfile.files.length > 0) {
+            for (var i = 0; i < myfile.files.length; i++) {
+                console.log(myfile.files[i])
+                $("#divInputFileRFP").append("<label class='col-form-label'>" + myfile.files[i].name + "</label>");
+            }
+        }
+
+        // $.ajax({
+        //     url: "/PreProcs/UploadAttachment/",
+        //     type: "POST",
+        //     dataType: "json",
+        //     data: fileUpload,
+        //     contentType: false,
+        //     processData: false,
+        //     success: function (data) {
+        //         $("#divInputFileRFP").html("");
+        //         $("#divInputFileRFP").append("<label class='col-form-label'>" + data.fileName + "</label>");
+        //     },
+        //     error: function (data) {
+        //         console.log("error" + data[0]);
+        //     }
+        // })
+    }
+
+    function uploadquotfile() {
+        var myfile = document.querySelector("#postedfilequot");
+
+        $("#divInputFileQuot").html("");
+        if (myfile.files.length > 0) {
+            for (var i = 0; i < myfile.files.length; i++) {
+                console.log(myfile.files[i])
+                $("#divInputFileQuot").append("<label class='col-form-label'>" + myfile.files[i].name + "</label>");
+            }
+        }
+    }
+
+    function uploadboqfile() {
+        var myfile = document.querySelector("#postedfileboq");
+
+        $("#divInputFileBOQ").html("");
+        if (myfile.files.length > 0) {
+            for (var i = 0; i < myfile.files.length; i++) {
+                console.log(myfile.files[i])
+                $("#divInputFileBOQ").append("<label class='col-form-label'>" + myfile.files[i].name + "</label>");
+            }
+        }
+    }
+    function uploadpropofile() {
+        var myfile = document.querySelector("#postedfileproposal");
+
+        $("#divInputFilePropo").html("");
+        if (myfile.files.length > 0) {
+            for (var i = 0; i < myfile.files.length; i++) {
+                console.log(myfile.files[i])
+                $("#divInputFilePropo").append("<label class='col-form-label'>" + myfile.files[i].name + "</label>");
+            }
+        }
+    }
+    function uploadgpfile() {
+        var myfile = document.querySelector("#postedfilegp");
+
+        $("#divInputFileGP").html("");
+        if (myfile.files.length > 0) {
+            for (var i = 0; i < myfile.files.length; i++) {
+                console.log(myfile.files[i])
+                $("#divInputFileGP").append("<label class='col-form-label'>" + myfile.files[i].name + "</label>");
+            }
+        }
+    }
+    function uploadothersfile() {
+        var myfile = document.querySelector("#postedfileothers");
+
+        $("#divInputFileOthers").html("");
+        if (myfile.files.length > 0) {
+            for (var i = 0; i < myfile.files.length; i++) {
+                console.log(myfile.files[i])
+                $("#divInputFileOthers").append("<label class='col-form-label'>" + myfile.files[i].name + "</label>");
+            }
+        }
+    }
+
+    function valid(){
+        // var cultureInfo = new CultureInfo("en-US");
+
+        // var tempGP = $("#txtGP").val().ToString("N", cultureInfo);
+        // $("#txtGP").val(tempGP);
+
+        // var tempIDR = $("#txtProjectValIdr").val().replace(".", ",");
+        // $("#txtProjectValIdr").val(tempIDR);
+        
+        // var tempUSD = $("#txtProjectValUsd").val().replace(".", ",");
+        // $("#txtProjectValUsd").val(tempUSD);
+
+    }
+
+    $("#PresalesId").on("change", function (){
+        var val = $(this).val();
+        var temp;
+        var presalesid = new FormData();
+        presalesid.append("presalesid", val)
+
+        $.ajax({
+            url: "/PreProcs/GetDetailDataPresalesId/",
+            type: "POST",
+            dataType: "json",
+            data: presalesid,
+            contentType: false,
+            processData: false,
+            success: function (data) {
+                temp = data;
+            },
+            error: function (data) {
+                console.log("error" + data[0]);
+            }
+        })
+
+        $.ajax({
+            url: "/PreProcs/GetListCustomer/",
+            type: "POST",
+            dataType: "json",
+            data: presalesid,
+            contentType: false,
+            processData: false,
+            success: function (data) {
+                console.log(temp)
+                
+            },
+            error: function (data) {
+                console.log("error" + data[0]);
+            }
+        })
+    })
+    
+    $("input#txtProjectValUsd").on("change", function (){
+        var val = $(this).val();
+
+        if(val > 2500000){
+            var tempstage = $("select#selectStage").html("")
+
+            tempstage.append("<option selected value='RiskAssessment'>Risk Assessment</option>")
+            tempstage.append("<option value='Presales'>Presales</option>")
+            tempstage.append("<option value='Delivery'>Delivery</option>")
+
+        }
+        
+    })
+
+    $("input#ProposalSubmissionDate").on("change", function (){
+        var val = $(this).val();
+        var quotdeadline = $("input#QuotationDeadline").val()
+
+        if(val > quotdeadline && idStage != "RiskAssessment"){
+            alert("Proposal Submission Date must be less than Subcon Quotation Deadline")
+        }
+        
+    })
+    
+    $("input#QuotationDeadline").on("change", function (){
+        var val = $(this).val();
+        var submissiondate = $("input#ProposalSubmissionDate").val()
+
+        if(val < submissiondate && idStage != "RiskAssessment"){
+            alert("Proposal Submission Date must be less than Subcon Quotation Deadline")
+        }
+        
+    })
+
+</script> 

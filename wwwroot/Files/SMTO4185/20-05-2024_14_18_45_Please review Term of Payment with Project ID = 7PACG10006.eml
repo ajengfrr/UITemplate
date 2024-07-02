@@ -1,0 +1,245 @@
+Received: from PUZPR04MB6272.apcprd04.prod.outlook.com (::1) by
+ TYZPR04MB4494.apcprd04.prod.outlook.com with HTTPS; Thu, 16 May 2024 07:39:36
+ +0000
+Received: from PS2PR02CA0014.apcprd02.prod.outlook.com (2603:1096:300:41::26)
+ by PUZPR04MB6272.apcprd04.prod.outlook.com (2603:1096:301:100::10) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7587.28; Thu, 16 May
+ 2024 07:39:28 +0000
+Received: from HK2PEPF00006FB1.apcprd02.prod.outlook.com
+ (2603:1096:300:41:cafe::5c) by PS2PR02CA0014.outlook.office365.com
+ (2603:1096:300:41::26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7587.28 via Frontend
+ Transport; Thu, 16 May 2024 07:39:28 +0000
+Authentication-Results: spf=fail (sender IP is 139.255.78.226)
+ smtp.mailfrom=6dv3bw.onmicrosoft.com; dkim=none (message not signed)
+ header.d=none;dmarc=none action=none
+ header.from=6dv3bw.onmicrosoft.com;compauth=fail reason=601
+Received-SPF: Fail (protection.outlook.com: domain of 6dv3bw.onmicrosoft.com
+ does not designate 139.255.78.226 as permitted sender)
+ receiver=protection.outlook.com; client-ip=139.255.78.226;
+ helo=publish-svr.multipolar.com;
+Received: from publish-svr.multipolar.com (139.255.78.226) by
+ HK2PEPF00006FB1.mail.protection.outlook.com (10.167.8.7) with Microsoft SMTP
+ Server (version=TLS1_3, cipher=TLS_AES_256_GCM_SHA384) id 15.20.7587.21 via
+ Frontend Transport; Thu, 16 May 2024 07:39:27 +0000
+Received: from devserver (mlpt-telkomwf.multipolar.com [10.10.62.17])
+	by publish-svr.multipolar.com (Postfix) with ESMTP id CA34F300099;
+	Thu, 16 May 2024 14:39:26 +0700 (WIB)
+From: "Hafief Maulana Aziz" <hafief.aziz@6dv3bw.onmicrosoft.com>
+To: yulian@6dv3bw.onmicrosoft.com
+Cc: hafief.aziz@6dv3bw.onmicrosoft.com
+Date: 16 May 2024 14:43:00 +0700
+Subject: Please review Term of Payment with Project ID = 7PACG10006
+Content-Type: text/html; charset=us-ascii
+Content-Transfer-Encoding: quoted-printable
+Message-ID:
+ <3c142eb7-ae2e-447d-88d7-1c5ed2c3e2e3@HK2PEPF00006FB1.apcprd02.prod.outlook.com>
+Return-Path: hafief.aziz@6dv3bw.onmicrosoft.com
+X-MS-Exchange-Organization-ExpirationStartTime: 16 May 2024 07:39:28.1943
+ (UTC)
+X-MS-Exchange-Organization-ExpirationStartTimeReason: OriginalSubmit
+X-MS-Exchange-Organization-ExpirationInterval: 1:00:00:00.0000000
+X-MS-Exchange-Organization-ExpirationIntervalReason: OriginalSubmit
+X-MS-Exchange-Organization-Network-Message-Id:
+ ae4f6f45-8b36-4852-5e82-08dc757b511b
+X-EOPAttributedMessage: 0
+X-EOPTenantAttributedMessage: 7e08c45e-d069-48e9-b15b-4932b36a7d1c:0
+X-MS-Exchange-Organization-MessageDirectionality: Incoming
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic:
+ HK2PEPF00006FB1:EE_|PUZPR04MB6272:EE_|TYZPR04MB4494:EE_
+X-MS-Exchange-Organization-AuthSource:
+ HK2PEPF00006FB1.apcprd02.prod.outlook.com
+X-MS-Exchange-Organization-AuthAs: Anonymous
+X-MS-Office365-Filtering-Correlation-Id: ae4f6f45-8b36-4852-5e82-08dc757b511b
+X-MS-Exchange-Organization-SCL: 5
+X-Forefront-Antispam-Report:
+ CIP:139.255.78.226;CTRY:ID;LANG:en;SCL:5;SRV:;IPV:NLI;SFV:SPM;H:publish-svr.multipolar.com;PTR:ln-static-139-255-78-226.link.net.id;CAT:SPOOF;SFS:(13230031)(3613699003);DIR:INB;
+X-Microsoft-Antispam: BCL:0;ARA:13230031|3613699003;
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 May 2024 07:39:27.9286
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: ae4f6f45-8b36-4852-5e82-08dc757b511b
+X-MS-Exchange-CrossTenant-Id: 7e08c45e-d069-48e9-b15b-4932b36a7d1c
+X-MS-Exchange-CrossTenant-AuthSource:
+ HK2PEPF00006FB1.apcprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: Internet
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PUZPR04MB6272
+X-MS-Exchange-Transport-EndToEndLatency: 00:00:08.2482042
+X-MS-Exchange-Processed-By-BccFoldering: 15.20.7587.028
+X-Microsoft-Antispam-Mailbox-Delivery:
+	ucf:0;jmr:0;auth:0;dest:J;OFR:SpamFilterAuthJ;ENG:(910001)(944506478)(944626604)(920097)(930097)(3100021)(140003);RF:JunkEmail;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?6mPPWSn3KxnkRCMyoL3iMyuQh2F9DphDxt83Oj9i4GUWwfHKfyGWFZ5Xzm/Z?=
+ =?us-ascii?Q?UVfZJ2UJgsxyjr+e/GDvr/PHFBft9nveGOCvRHyCD8Iv4TvPfzdGO9QFvs0s?=
+ =?us-ascii?Q?yu2404Ox2ffWHqgjxc9OpYx+pAzcC5cFtvEFpzAA4sAKa59dsrEVWX0DipQd?=
+ =?us-ascii?Q?9+pgpy0KFA/uCeQvQRxrtZmAg5XkSZXRNHhgU1VZVmoQ/lTz9O3Z2mQrweGo?=
+ =?us-ascii?Q?2vI1SJExlDLVQx02mQR2yNOr9rnolgakLygBOcEKO2diqFOCTsTUzslAPNde?=
+ =?us-ascii?Q?hqJsE3ei6/P+FKfl1EwtjQEq9B3XX1AyG5Cx8bdqSK7bCslwFdK6J0DITOX8?=
+ =?us-ascii?Q?gi1iW/74Ovfd0VF5Z+SJvMAUNpelpRYmNLfHq9fUoBXYXSUPDc9Y1uT425Ce?=
+ =?us-ascii?Q?biZjDypJFUnB6rj3sZECzUGm5dIg6XQRDRqUGwC1vOcb5cXpL1YMPHlaRC7m?=
+ =?us-ascii?Q?dWz1Z2c3XaYh0M0F3qd5kwSL5kDCN21c9oahu8HZyo72206fEsIlN+OxaIK6?=
+ =?us-ascii?Q?Np9QqcyHjnu7AdoR9DiE2Q22nT/j5Q+vvgCI7VI5USRjByuZAay2sb3/lkrx?=
+ =?us-ascii?Q?WPG+OpRj+i2kZPpI6B3ceQOgNhm/PrcW9pQdJYLEBEoNwiFaupNChWqilLB8?=
+ =?us-ascii?Q?FBMFT2diWzCD4GYRnu/RB4yqRltLLX78OjeLu4ghvpnBn3oaTxu0Fh8AgAhN?=
+ =?us-ascii?Q?Z6HQSq7GcjxiBVxkFAlAl/SDmfiWHJU1QumfIdqWInt8B7NotyJZJNvrjKrF?=
+ =?us-ascii?Q?2QFvSK8+A5E0PFR4ilYiYOQnebTr4ILJuF7Dkd4TccBmVQ0Qz7+SjKWQ0cvT?=
+ =?us-ascii?Q?xkp0sCy7BeWZKsZQ7lXEGg9uBCPPLymJ3YcuZLECSH7k+InZ4UAKN3H9YtL4?=
+ =?us-ascii?Q?QPlbsNNtP0swrCB/h89j7d2JoztwDKLF9KDCVXjRWgyLbW7dIrtBHj+hhNPw?=
+ =?us-ascii?Q?rojUy6KaWT1409dVfjUyZQtwyi9ljz2GlfWVqb1ESLUzYwYfT2eTxniIUptR?=
+ =?us-ascii?Q?KsMp0k0khz9tsSt4BrRWAi7F66q8s8DDV+AbbtXISJbp4VLbcC2qIkufhvwA?=
+ =?us-ascii?Q?l/XTnnSRdPTyKaYtYiGFIBpYGJvZpo0vnPA4m4KyYhRL6F2THsQD2GjRTTYg?=
+ =?us-ascii?Q?txnyzuUtwgQ7gKgkcFKY92p5Lh2suxpJHPQNtF6A30qan6ewpH4F9Xa8RWpr?=
+ =?us-ascii?Q?BuWHKUUyWOIsr/3wHxRQGt7MqIVU1hfefDrOa9aFczgPHpwUY8RNb31w9hKx?=
+ =?us-ascii?Q?k8LLlh3l+TWs+plVt0zhdHkQfL4vOiur45hTV0Aa/Z/EuQ47jGzgGN2inykm?=
+ =?us-ascii?Q?T/Xc/vcfyi90EJNJjMl+GZ+uqN/HsIWBpUrnaj1FRPHZafBIGpuM6MDv9ZPU?=
+ =?us-ascii?Q?7T2Me4mOQA6K8HIU5jsgyKGe4YN0KrFTqNXYY8qCBfnD+2+S9oH23Oj3+Ojk?=
+ =?us-ascii?Q?rS4aLdngnvyCTh/QnxM6hvlb7HHXNE9hnfhPkof0+ogqfA/asLtYyxlyqoO+?=
+ =?us-ascii?Q?cOa4pZJFRbNpc5LGUI+lLKlNQITn/zljTHKr/k2DNy6588NIbXPB7Y3PY6V8?=
+ =?us-ascii?Q?Qw8wiOG6UAfnDrARZ5T9HD0qQGgJ/LhJnwetB0+1OKqxfwyLscGbIDJT1FIN?=
+ =?us-ascii?Q?L8suzJLI6OHRbjXOEy9nzO/sN1vNO3lQ09hy3yEL9ZFi56PAvMh9gtU54v9n?=
+ =?us-ascii?Q?Bhuf7RMQoX6qcSfnpa+iHZEESr8eMLZVNI2k0HtRs5VsqBOqFNH99yMpMm5v?=
+ =?us-ascii?Q?z3f9iVbmHZurRC7FbLj3R5LaO0Rgesc4vAfNJTR4906yNbCaOROe1RBmf5e/?=
+ =?us-ascii?Q?WYFnhkPyH6LJ2MmEB7GpvIm3JinSvWtTi46R3zg6dG4nySRfWIeYZn5SHY9s?=
+ =?us-ascii?Q?UrBY699H9xGzYkPnT4DnEHbrgHimuXOtXHdMFZ2qgpvbt3XVD5Nk06ZfiN4u?=
+ =?us-ascii?Q?S4f/HsTsA8gkxfclVtPa8RTiAfGDP3mPPBogXwSPihDebq/sV603/yw5H6Ua?=
+ =?us-ascii?Q?LiltZ11Qqg0XVcxAVSskC9bs7cipDZxJSO0/ohzKwqOsDHGKNUONe8psUEN5?=
+ =?us-ascii?Q?D5HK3oXe4BCsn+8Tfl5MxDU5WFURo91F8TwlA+VTNnVBXxgT63LKdNvvDfON?=
+ =?us-ascii?Q?hvZoOUUa3UCtr7zFT2u0b7ixf0gU4SmJwzlWswLnha/qutm4jSZ8SB+diSqF?=
+ =?us-ascii?Q?zHUN2ZpOP5GQLX8nL9PfbCCXE7kiK2vh8j714/F+35/qgUZh8uS8DChifEvc?=
+ =?us-ascii?Q?FDP7DDZ7XQN1Xx/aQQEOFMsp2fX998Rl0C9zGzRQKjVtOeMzSP75UnBeRX3p?=
+ =?us-ascii?Q?m9tFxHKYFM0DEh0hbpeAzygW498RohkDQp9kF4+mlwWUQeYmmkwJVcmiF18e?=
+ =?us-ascii?Q?tpujvek6B1ETwLxTxUaQSxuWstEBAJZkkHpHJhAEWSI6MFLif7vJpYd9/bup?=
+ =?us-ascii?Q?Pd121eAahrhuTtyClt7wruhygcwIXi77TQdqPi8gVlvM+zsIO2dfm0c5bQ91?=
+ =?us-ascii?Q?tKvc8DGLkbksoTq/bOpYFXn61ueha7E99ilfbD/z0kLfrfVPn8+aR7aAtMTX?=
+ =?us-ascii?Q?UE9Q41ZOH//vDYpp0Vp1ZFghxOmE4ONcmePri8tR4C7JE0Gywj0bk2apXb+C?=
+ =?us-ascii?Q?Ag=3D=3D?=
+MIME-Version: 1.0
+
+<html><head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+                                 <style>
+                                <!--
+                                 /* Font Definitions */=0A=
+                                 @font-face
+                                    {font-family:'Cambria Math';
+                                    panose-1:2 4 5 3 5 4 6 3 2 4;
+                                    mso-font-charset:0;
+                                    mso-generic-font-family:roman;
+                                    mso-font-pitch:variable;
+                                    mso-font-signature:3 0 0 0 1 0;}
+                                @font-face
+                                    {font-family:Calibri;
+                                    panose-1:2 15 5 2 2 2 4 3 2 4;
+                                    mso-font-charset:0;
+                                    mso-generic-font-family:swiss;
+                                    mso-font-pitch:variable;
+                                    mso-font-signature:-469750017 -10737324=
+85 9 0 511 0;}
+                                @font-face
+                                    {font-family:"Segoe UI";
+                                    panose-1:2 11 5 2 4 2 4 2 2 3;
+                                    mso-font-charset:0;
+                                    mso-generic-font-family:swiss;
+                                    mso-font-pitch:variable;
+                                    mso-font-signature:-469750017 -10736833=
+29 9 0 511 0;}
+                                 /* Style Definitions */
+                                 p.MsoNormal, li.MsoNormal, div.MsoNormal
+                                    {mso-style-unhide:no;
+                                    mso-style-qformat:yes;
+                                    mso-style-parent:"";
+                                    margin:0in;
+                                    mso-pagination:widow-orphan;
+                                    font-size:11.0pt;
+                                    font-family:"Calibri",sans-serif;
+                                    mso-fareast-font-family:Calibri;
+                                    mso-fareast-theme-font:minor-latin;}
+                                a:link, span.MsoHyperlink
+                                    {mso-style-noshow:yes;
+                                    mso-style-priority:99;
+                                    color:blue;
+                                    text-decoration:underline;
+                                    text-underline:single;}
+                                a:visited, span.MsoHyperlinkFollowed
+                                    {mso-style-noshow:yes;
+                                    mso-style-priority:99;
+                                    color:purple;
+                                    text-decoration:underline;
+                                    text-underline:single;}
+                                p
+                                    {mso-style-priority:99;
+                                    mso-margin-top-alt:auto;
+                                    margin-right:0in;
+                                    mso-margin-bottom-alt:auto;
+                                    margin-left:0in;
+                                    mso-pagination:widow-orphan;
+                                    font-size:11.0pt;
+                                    font-family:"Calibri",sans-serif;
+                                    mso-fareast-font-family:Calibri;
+                                    mso-fareast-theme-font:minor-latin;}
+                                p.msonormal0, li.msonormal0, div.msonormal0
+                                    {mso-style-name:msonormal;
+                                    mso-style-unhide:no;
+                                    mso-margin-top-alt:auto;
+                                    margin-right:0in;
+                                    mso-margin-bottom-alt:auto;
+                                    margin-left:0in;
+                                    mso-pagination:widow-orphan;
+                                    font-size:11.0pt;
+                                    font-family:"Calibri",sans-serif;
+                                    mso-fareast-font-family:Calibri;
+                                    mso-fareast-theme-font:minor-latin;}
+                                .MsoChpDefault
+                                    {mso-style-type:export-only;
+                                    mso-default-props:yes;
+                                    font-family:"Calibri",sans-serif;
+                                    mso-ascii-font-family:Calibri;
+                                    mso-ascii-theme-font:minor-latin;
+                                    mso-fareast-font-family:Calibri;
+                                    mso-fareast-theme-font:minor-latin;
+                                    mso-hansi-font-family:Calibri;
+                                    mso-hansi-theme-font:minor-latin;
+                                    mso-bidi-font-family:"Times New Roman";
+                                    mso-bidi-theme-font:minor-bidi;}
+                                @page WordSection1
+                                    {size:8.5in 11.0in;
+                                    margin:1.0in 1.0in 1.0in 1.0in;
+                                    mso-header-margin:.5in;
+                                    mso-footer-margin:.5in;
+                                    mso-paper-source:0;}
+                                div.WordSection1
+                                    {page:WordSection1;}
+                                 table.MsoNormalTable
+                                    {mso-style-name:"Table Normal";
+                                    mso-tstyle-rowband-size:0;
+                                    mso-tstyle-colband-size:0;
+                                    mso-style-noshow:yes;
+                                    mso-style-priority:99;
+                                    mso-style-parent:"";
+                                    mso-padding-alt:0in 5.4pt 0in 5.4pt;
+                                    mso-para-margin:0in;
+                                    mso-pagination:widow-orphan;
+                                    font-size:11.0pt;
+                                    font-family:"Calibri",sans-serif;
+                                    mso-ascii-font-family:Calibri;
+                                    mso-ascii-theme-font:minor-latin;
+                                    mso-hansi-font-family:Calibri;
+                                    mso-hansi-theme-font:minor-latin;
+                                    mso-bidi-font-family:"Times New Roman";
+                                    mso-bidi-theme-font:minor-bidi;}
+                                </style>
+                               </head>
+                               <body>Dear All, <br><br> You have a Term of =
+Payment to review. <br> Please click the hyperlink below for further detail=
+s: <br><br> <a  class=3D'btn-down-spec' style=3D'font-size: 12px; padding: =
+7px!important; margin-right: 5px; margin-left: 5px; text-decoration: none;'=
+ href=3D'https://10.10.62.17:44455/trackingform/Edit/7PACG10006'>Click here=
+ to open this item.</a>=0A=
+                                  <br><br>=0A=
+                                </body>=0A=
+                            </html>
+
+-->=

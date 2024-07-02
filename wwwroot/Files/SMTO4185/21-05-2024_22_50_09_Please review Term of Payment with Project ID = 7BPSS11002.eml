@@ -1,0 +1,238 @@
+Received: from TYZPR04MB7808.apcprd04.prod.outlook.com (::1) by
+ TYZPR04MB4494.apcprd04.prod.outlook.com with HTTPS; Wed, 15 May 2024 09:30:17
+ +0000
+Received: from SG2PR04CA0201.apcprd04.prod.outlook.com (2603:1096:4:187::23)
+ by TYZPR04MB7808.apcprd04.prod.outlook.com (2603:1096:405:68::10) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7587.27; Wed, 15 May
+ 2024 09:30:15 +0000
+Received: from SG1PEPF000082E7.apcprd02.prod.outlook.com
+ (2603:1096:4:187:cafe::fb) by SG2PR04CA0201.outlook.office365.com
+ (2603:1096:4:187::23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7587.27 via Frontend
+ Transport; Wed, 15 May 2024 09:30:15 +0000
+Authentication-Results: spf=fail (sender IP is 139.255.78.226)
+ smtp.mailfrom=6dv3bw.onmicrosoft.com; dkim=none (message not signed)
+ header.d=none;dmarc=none action=none
+ header.from=6dv3bw.onmicrosoft.com;compauth=fail reason=601
+Received-SPF: Fail (protection.outlook.com: domain of 6dv3bw.onmicrosoft.com
+ does not designate 139.255.78.226 as permitted sender)
+ receiver=protection.outlook.com; client-ip=139.255.78.226;
+ helo=publish-svr.multipolar.com;
+Received: from publish-svr.multipolar.com (139.255.78.226) by
+ SG1PEPF000082E7.mail.protection.outlook.com (10.167.240.10) with Microsoft
+ SMTP Server (version=TLS1_3, cipher=TLS_AES_256_GCM_SHA384) id 15.20.7587.21
+ via Frontend Transport; Wed, 15 May 2024 09:30:14 +0000
+Received: from COM-TPD-1837 (unknown [10.10.71.215])
+	by publish-svr.multipolar.com (Postfix) with ESMTP id B5C04300099;
+	Wed, 15 May 2024 16:30:13 +0700 (WIB)
+From: "Hafief Maulana Aziz" <hafief.aziz@6dv3bw.onmicrosoft.com>
+To: yulian@6dv3bw.onmicrosoft.com
+Cc: hafief.aziz@6dv3bw.onmicrosoft.com
+Date: 15 May 2024 16:30:13 +0700
+Subject: Please review Term of Payment with Project ID = 7BPSS11002
+Content-Type: text/html; charset=us-ascii
+Content-Transfer-Encoding: quoted-printable
+Message-ID:
+ <e3e6727e-ff93-421e-befb-64d244523fb1@SG1PEPF000082E7.apcprd02.prod.outlook.com>
+Return-Path: hafief.aziz@6dv3bw.onmicrosoft.com
+X-MS-Exchange-Organization-ExpirationStartTime: 15 May 2024 09:30:14.2673
+ (UTC)
+X-MS-Exchange-Organization-ExpirationStartTimeReason: OriginalSubmit
+X-MS-Exchange-Organization-ExpirationInterval: 1:00:00:00.0000000
+X-MS-Exchange-Organization-ExpirationIntervalReason: OriginalSubmit
+X-MS-Exchange-Organization-Network-Message-Id:
+ 4b150170-267b-4019-e3ef-08dc74c1a00f
+X-EOPAttributedMessage: 0
+X-EOPTenantAttributedMessage: 7e08c45e-d069-48e9-b15b-4932b36a7d1c:0
+X-MS-Exchange-Organization-MessageDirectionality: Incoming
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic:
+ SG1PEPF000082E7:EE_|TYZPR04MB7808:EE_|TYZPR04MB4494:EE_
+X-MS-Exchange-Organization-AuthSource:
+ SG1PEPF000082E7.apcprd02.prod.outlook.com
+X-MS-Exchange-Organization-AuthAs: Anonymous
+X-MS-Office365-Filtering-Correlation-Id: 4b150170-267b-4019-e3ef-08dc74c1a00f
+X-MS-Exchange-Organization-SCL: 5
+X-Forefront-Antispam-Report:
+ CIP:139.255.78.226;CTRY:ID;LANG:en;SCL:5;SRV:;IPV:NLI;SFV:SPM;H:publish-svr.multipolar.com;PTR:ln-static-139-255-78-226.link.net.id;CAT:SPOOF;SFS:(13230031)(3613699003);DIR:INB;
+X-Microsoft-Antispam: BCL:0;ARA:13230031|3613699003;
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 May 2024 09:30:14.1892
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4b150170-267b-4019-e3ef-08dc74c1a00f
+X-MS-Exchange-CrossTenant-Id: 7e08c45e-d069-48e9-b15b-4932b36a7d1c
+X-MS-Exchange-CrossTenant-AuthSource:
+ SG1PEPF000082E7.apcprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: Internet
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYZPR04MB7808
+X-MS-Exchange-Transport-EndToEndLatency: 00:00:03.0200241
+X-MS-Exchange-Processed-By-BccFoldering: 15.20.7587.015
+X-Microsoft-Antispam-Mailbox-Delivery:
+	ucf:0;jmr:0;auth:0;dest:J;OFR:SpamFilterAuthJ;ENG:(910001)(944506478)(944626604)(920097)(930097)(3100021)(140003);RF:JunkEmail;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?RkUA4Fka2o9CS57aTXMKNTH3TV6pWxzUYo/L086U9GcE9dZECEKEGgJjWEUf?=
+ =?us-ascii?Q?o5NpMHz9OINEVqdVmiuXTEJCyFzmyIwufND6quWUUweshy3kqk7pyERz/9yY?=
+ =?us-ascii?Q?QN7mVnzmB4eruiPNws14LWjSyEPoNGck+KtopZzJfW+FEv2kk3NvJnlORM1G?=
+ =?us-ascii?Q?h0gn5udjLb3Q3ivEe678t/+GDpyvi04W9KqqjjL+sGYW3H28ZEBPBIoGAYmh?=
+ =?us-ascii?Q?1bOoVdh6a5jm1/eGvWGjHiizzegg1RmqjcqXl1EmHyvMwoLH+hPXYuomLVy4?=
+ =?us-ascii?Q?Nr5pzfZKrQ2SsZE/MIi4zztvfr5P6goL3xo/KYg6iS3ecVcmoPQ1qGofzvCV?=
+ =?us-ascii?Q?Q9D39EpNAf0frcyBdTEOqqj16jzM0iqdCvt6EoypI5HcDCrpA+xEu3oFa01H?=
+ =?us-ascii?Q?X1pPIyGbeXAgka90M1QeroSC9TusobKvqAXHJv1GgfFHhTxTvNZX7657hmZa?=
+ =?us-ascii?Q?ujGak4Lbc2cpj+wLO5kqq0rN2yQqR8wfGFRQ5baNrvu4g45Jfte6wQoB+LT/?=
+ =?us-ascii?Q?x8qNIpLybzP1n5nP6lWUKVo3oRf7/QwxlJ6K4wI511Kc5ln624m7ph9qDYWk?=
+ =?us-ascii?Q?tg9ZJWn7w3rOwQ4QPlnUg74MfG2WW0rTYrRf7spsjH992uXMXwQkjCzfl1co?=
+ =?us-ascii?Q?rI7Kdhu+ILC1wBnTSWo6kE3XUkllrkIxGMYDssKmwuImnTS2pULJ/vCNYlon?=
+ =?us-ascii?Q?8DdfcKjXoGc3/iHGvzFkC/5YcTxWvom/vnRfZi8i82aCNAsII9b1xlfe9/Hc?=
+ =?us-ascii?Q?kEwJiWp1/d3sLUjCzT59c93XaDExXmeHs9DZyoa1aqQ9z01BUaduXjCzfQv/?=
+ =?us-ascii?Q?aldEdD1WnikJsO6HzLT9fQx3JxewsA1YEDEDWNwad3xW/t42tMo25hXkCu72?=
+ =?us-ascii?Q?j5oNK/hhdnekJl9gnFNfqNL9MJcmA4n/RkPpgbbn5eoF9ZIEo9lP5t81I8Yb?=
+ =?us-ascii?Q?tj0AKbWekwFI25GxScbouT2faU8uHyjHZ/UoFLtjhM/8HNNLq31YPgoAiZvD?=
+ =?us-ascii?Q?QdLkDsZQLd/d7B7Z8zeyxRz2tKz94YA437lpJupVnPZuZQ5jG/CXxrlK4WCB?=
+ =?us-ascii?Q?iWFlnf2WdBrWHhci1VY/TKi6d5nI+J4t9JiUfbBq1dryniqyyVN/HruWB8Jr?=
+ =?us-ascii?Q?f8zBi1wVdIReiM2gTI4MceMxa01EoPHghnUPooFew1NS6JLX3tbkC1+pOItS?=
+ =?us-ascii?Q?jTWOxRSucWqqYD/U9JbfDhSiBaLranOfSCtWjsnvzDwZ+mIVRuEzDNas8QZU?=
+ =?us-ascii?Q?yxEts58QuQ3ayTDhBDngivCgjt1XrTFqbazSx6CaEtLu4bps5/NTYJ+H4mWO?=
+ =?us-ascii?Q?KLp+ILKbn1gq4Gkd9wyzCND3Q4h+r9AE+9ZvwY6XbdWrvICLlqq+nNT9MnK/?=
+ =?us-ascii?Q?MYxWoirHa+MJ0zf1FNS/yvdd64mYBMpq1wIaF3DLpmQZIwIooHm6VvsmxNls?=
+ =?us-ascii?Q?WJrj+wI8zVKOXstLjSG54G4CWowX/CIUYnQuqhBz1yQX43I/qCuwly0RAIIP?=
+ =?us-ascii?Q?i9mX9D4EFjPzA/huW5x9LBvEG4Ve3dvx5gjLOGC/vk6AjX6hBa61Ta7vS5F7?=
+ =?us-ascii?Q?TrvcyfQZpk+gxZBPPZsRYvkX3NOXB9URyR/y9UAc0GvQ5TDk0Nh8wT1eHP7P?=
+ =?us-ascii?Q?hEMwPIGXj/6cu41XTj9cZ7PyDJ3j+fwiwalHlw2Bz8+slVtasSLfGo71m2uI?=
+ =?us-ascii?Q?g2dJUqaMD0L6liMw/050JZLJJ7Q4uMDoOEamsY+3h8J7XyF3xPpzzhSBs+9S?=
+ =?us-ascii?Q?tooBHUJzjasEPwj5nNZcpZV0gv3QzqtV3IVRCu0uuL4s8x/4hJ7T0VcSggA4?=
+ =?us-ascii?Q?QsuhyPalcegWeb5/h6y6W2S+7AaOoA0U8ZQ7jS0H8nSFDXE5cFcuoYPRZDhb?=
+ =?us-ascii?Q?Qaf/KDT3J7OdECqXUcoMrwAPcQtjsgl+vdg4YslVLmJl8Cr5ugld0k6BCa0i?=
+ =?us-ascii?Q?L0lW+W0+m0IrS0R8aiMPZ9Zv6UHwEZEUTkYKNXnGMWR7yIPwRG1eWUz0TR/X?=
+ =?us-ascii?Q?a8pxRYPw97iOeZrZRfzuaRb57AOUTDkI+N5Cx3OauXxgL7PhiClcuXlUZaxw?=
+ =?us-ascii?Q?fsRioDr/ufRerNAgDPlq542HR0V/ue+WnQOKZhZ8Mi26V1mQ+ZhrG5VB514P?=
+ =?us-ascii?Q?vjydkuaf1Q2jxWmgFEQm/xWnrSSe3WADw9AMXh86rHlcuOPQNe7gIIZgJTSU?=
+ =?us-ascii?Q?m3MiPMfLB1li7mEE1NEENQLzbVucF5LUxooMcNCqIpeYAW+lTWMTWBbaev+8?=
+ =?us-ascii?Q?MJ+yDldBE3XmSTpnXv0STd+sM3ysZBdyWLEhWxGBEg=3D=3D?=
+MIME-Version: 1.0
+
+<html><head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+><style>
+                                <!--
+                                 /* Font Definitions */=0A=
+                                 @font-face
+                                    {font-family:"Cambria Math";
+                                    panose-1:2 4 5 3 5 4 6 3 2 4;
+                                    mso-font-charset:0;
+                                    mso-generic-font-family:roman;
+                                    mso-font-pitch:variable;
+                                    mso-font-signature:3 0 0 0 1 0;}
+                                @font-face
+                                    {font-family:Calibri;
+                                    panose-1:2 15 5 2 2 2 4 3 2 4;
+                                    mso-font-charset:0;
+                                    mso-generic-font-family:swiss;
+                                    mso-font-pitch:variable;
+                                    mso-font-signature:-469750017 -10737324=
+85 9 0 511 0;}
+                                @font-face
+                                    {font-family:"Segoe UI";
+                                    panose-1:2 11 5 2 4 2 4 2 2 3;
+                                    mso-font-charset:0;
+                                    mso-generic-font-family:swiss;
+                                    mso-font-pitch:variable;
+                                    mso-font-signature:-469750017 -10736833=
+29 9 0 511 0;}
+                                 /* Style Definitions */
+                                 p.MsoNormal, li.MsoNormal, div.MsoNormal
+                                    {mso-style-unhide:no;
+                                    mso-style-qformat:yes;
+                                    mso-style-parent:"";
+                                    margin:0in;
+                                    mso-pagination:widow-orphan;
+                                    font-size:11.0pt;
+                                    font-family:"Calibri",sans-serif;
+                                    mso-fareast-font-family:Calibri;
+                                    mso-fareast-theme-font:minor-latin;}
+                                a:link, span.MsoHyperlink
+                                    {mso-style-noshow:yes;
+                                    mso-style-priority:99;
+                                    color:blue;
+                                    text-decoration:underline;
+                                    text-underline:single;}
+                                a:visited, span.MsoHyperlinkFollowed
+                                    {mso-style-noshow:yes;
+                                    mso-style-priority:99;
+                                    color:purple;
+                                    text-decoration:underline;
+                                    text-underline:single;}
+                                p
+                                    {mso-style-priority:99;
+                                    mso-margin-top-alt:auto;
+                                    margin-right:0in;
+                                    mso-margin-bottom-alt:auto;
+                                    margin-left:0in;
+                                    mso-pagination:widow-orphan;
+                                    font-size:11.0pt;
+                                    font-family:"Calibri",sans-serif;
+                                    mso-fareast-font-family:Calibri;
+                                    mso-fareast-theme-font:minor-latin;}
+                                p.msonormal0, li.msonormal0, div.msonormal0
+                                    {mso-style-name:msonormal;
+                                    mso-style-unhide:no;
+                                    mso-margin-top-alt:auto;
+                                    margin-right:0in;
+                                    mso-margin-bottom-alt:auto;
+                                    margin-left:0in;
+                                    mso-pagination:widow-orphan;
+                                    font-size:11.0pt;
+                                    font-family:"Calibri",sans-serif;
+                                    mso-fareast-font-family:Calibri;
+                                    mso-fareast-theme-font:minor-latin;}
+                                .MsoChpDefault
+                                    {mso-style-type:export-only;
+                                    mso-default-props:yes;
+                                    font-family:"Calibri",sans-serif;
+                                    mso-ascii-font-family:Calibri;
+                                    mso-ascii-theme-font:minor-latin;
+                                    mso-fareast-font-family:Calibri;
+                                    mso-fareast-theme-font:minor-latin;
+                                    mso-hansi-font-family:Calibri;
+                                    mso-hansi-theme-font:minor-latin;
+                                    mso-bidi-font-family:"Times New Roman";
+                                    mso-bidi-theme-font:minor-bidi;}
+                                @page WordSection1
+                                    {size:8.5in 11.0in;
+                                    margin:1.0in 1.0in 1.0in 1.0in;
+                                    mso-header-margin:.5in;
+                                    mso-footer-margin:.5in;
+                                    mso-paper-source:0;}
+                                div.WordSection1
+                                    {page:WordSection1;}
+                                 table.MsoNormalTable
+                                    {mso-style-name:"Table Normal";
+                                    mso-tstyle-rowband-size:0;
+                                    mso-tstyle-colband-size:0;
+                                    mso-style-noshow:yes;
+                                    mso-style-priority:99;
+                                    mso-style-parent:"";
+                                    mso-padding-alt:0in 5.4pt 0in 5.4pt;
+                                    mso-para-margin:0in;
+                                    mso-pagination:widow-orphan;
+                                    font-size:11.0pt;
+                                    font-family:"Calibri",sans-serif;
+                                    mso-ascii-font-family:Calibri;
+                                    mso-ascii-theme-font:minor-latin;
+                                    mso-hansi-font-family:Calibri;
+                                    mso-hansi-theme-font:minor-latin;
+                                    mso-bidi-font-family:"Times New Roman";
+                                    mso-bidi-theme-font:minor-bidi;}
+                                </style>
+                               </head>
+                               <body>Dear All, <br><br> You have a Term of =
+Payment to review. <br> Please click the hyperlink below for further detail=
+s: <br><br> <a  class=3D'btn-down-spec' style=3D'font-size: 12px; padding: =
+7px!important; margin-right: 5px; margin-left: 5px; text-decoration: none;'=
+ href=3D'https://localhost:44455/trackingform/Edit/7BPSS11002'>Click here t=
+o open this item.</a>=0A=
+                                  <br><br>=0A=
+                                </body>=0A=
+                            </html>
+
+-->=
