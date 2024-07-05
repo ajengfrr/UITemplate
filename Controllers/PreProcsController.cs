@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
 using System.Data;
@@ -596,7 +596,7 @@ namespace PreProcsController.Controllers
             }
             else if (preprocGI.Stage == "Delivery")
             {
-                ViewBag.billreason = await _context.PreProcPendingBillingReasons.FirstOrDefaultAsync(x => x.PreProcId == id && x.NeedEscalation == true);
+                ViewBag.billreason = await _context.PreProcPendingBillingReasons.FirstOrDefaultAsync(x => x.PreProcId == id && x.NeedEscalation);
             }
             ViewBag.picreason = empbaseereq;
 
@@ -1779,7 +1779,7 @@ namespace PreProcsController.Controllers
                 await _context.SaveChangesAsync();
             }
 
-            if (sendemail == true)
+            if (sendemail)
             {
                 await SendNotifToPMO(procid);
             }
@@ -3449,7 +3449,7 @@ namespace PreProcsController.Controllers
 
             string TextClosedWithTable = @"</table><br>";
 
-            string TextClosed = @"<br><br><p class='xmsonormal' style='margin:0cm 0cm 0.0001pt;font-size:11pt;font-family:Calibri, sans-serif'>
+            const string TextClosed = @"<br><br><p class='xmsonormal' style='margin:0cm 0cm 0.0001pt;font-size:11pt;font-family:Calibri, sans-serif'>
                                           <span lang='EN-US' style='mso-ansi-language:EN-US' class='ContentPasted0'>&nbsp; <o:p class='ContentPasted0'>&nbsp;</o:p>
                                           </span>
                                         </p>
